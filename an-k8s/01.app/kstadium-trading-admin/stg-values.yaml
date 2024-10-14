@@ -1,0 +1,6 @@
+Env: stg 
+OldTag: kstadium-trading-admin-202401251233 
+NewTag: kstadium-trading-admin-202401251350 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: trading

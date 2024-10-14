@@ -1,0 +1,5 @@
+Env: stg
+OldTag: oldtag2 
+NewTag: octet-token-change-eks-202401251440
+AppType: BackEnd
+NotUseLb: true

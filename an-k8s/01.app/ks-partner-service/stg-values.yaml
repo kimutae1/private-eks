@@ -1,0 +1,11 @@
+Env: dev
+OldTag: ks-partner-service-202312261431
+NewTag: ks-partner-service-202312261850 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: partner-api
+CommonSecretSelect: 
+  - Main
+  - Partner-Service
+LbConfig:
+  HealthCheck: /api/v1/partner-companies?page=0&size=1

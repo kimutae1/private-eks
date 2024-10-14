@@ -1,0 +1,8 @@
+prometheus:
+  thanosService:
+    enabled: true
+  prometheusSpec:
+    thanos:
+      objectStorageConfig:
+        key: s3-conf.yaml
+        name: thanos-s3-secret

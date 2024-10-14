@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-logging
+  namespace: kube-system
+data:
+  output.conf: |
+    [OUTPUT]
+      Name cloudwatch_logs
+      Match *
+      region ap-northeast-2
+      log_group_name stg-kstadium-service-logging
+      log_stream_prefix from-
+      auto_create_group true
+      log_key log

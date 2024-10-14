@@ -1,0 +1,1698 @@
+---
+# Source: mailu/charts/redis/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: release-name-redis
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: mailu/templates/secret-initial-account.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: release-name-mailu-initial-account
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  initial-account-password: "U0A1XzB1QE9AXw=="
+---
+# Source: mailu/templates/secret-key-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: release-name-mailu-secret
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  secret-key: "QEZ6XzNAX0BFTw=="
+---
+# Source: mailu/templates/webmail/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mailu-roundcube
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: webmail
+type: Opaque
+data:
+  roundcube-db-password: "X0B5WHY3XzdAbQ=="
+---
+# Source: mailu/charts/redis/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: release-name-redis-configuration
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+data:
+  redis.conf: |-
+    # User-supplied common configuration:
+    # Enable AOF https://redis.io/topics/persistence#append-only-file
+    appendonly yes
+    # Disable RDB persistence, AOF persistence already enabled.
+    save ""
+    # End of common configuration
+  master.conf: |-
+    dir /data
+    # User-supplied master configuration:
+    rename-command FLUSHDB ""
+    rename-command FLUSHALL ""
+    # End of master configuration
+  replica.conf: |-
+    dir /data
+    # User-supplied replica configuration:
+    rename-command FLUSHDB ""
+    rename-command FLUSHALL ""
+    # End of replica configuration
+---
+# Source: mailu/charts/redis/templates/health-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: release-name-redis-health
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+data:
+  ping_readiness_local.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+    response=$(
+      timeout -s 15 $1 \
+      redis-cli \
+        -h localhost \
+        -p $REDIS_PORT \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_liveness_local.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+    response=$(
+      timeout -s 15 $1 \
+      redis-cli \
+        -h localhost \
+        -p $REDIS_PORT \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    responseFirstWord=$(echo $response | head -n1 | awk '{print $1;}')
+    if [ "$response" != "PONG" ] && [ "$responseFirstWord" != "LOADING" ] && [ "$responseFirstWord" != "MASTERDOWN" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_readiness_master.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_MASTER_PASSWORD_FILE ]] && export REDIS_MASTER_PASSWORD="$(< "${REDIS_MASTER_PASSWORD_FILE}")"
+    [[ -n "$REDIS_MASTER_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_MASTER_PASSWORD"
+    response=$(
+      timeout -s 15 $1 \
+      redis-cli \
+        -h $REDIS_MASTER_HOST \
+        -p $REDIS_MASTER_PORT_NUMBER \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_liveness_master.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_MASTER_PASSWORD_FILE ]] && export REDIS_MASTER_PASSWORD="$(< "${REDIS_MASTER_PASSWORD_FILE}")"
+    [[ -n "$REDIS_MASTER_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_MASTER_PASSWORD"
+    response=$(
+      timeout -s 15 $1 \
+      redis-cli \
+        -h $REDIS_MASTER_HOST \
+        -p $REDIS_MASTER_PORT_NUMBER \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    responseFirstWord=$(echo $response | head -n1 | awk '{print $1;}')
+    if [ "$response" != "PONG" ] && [ "$responseFirstWord" != "LOADING" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_readiness_local_and_master.sh: |-
+    script_dir="$(dirname "$0")"
+    exit_status=0
+    "$script_dir/ping_readiness_local.sh" $1 || exit_status=$?
+    "$script_dir/ping_readiness_master.sh" $1 || exit_status=$?
+    exit $exit_status
+  ping_liveness_local_and_master.sh: |-
+    script_dir="$(dirname "$0")"
+    exit_status=0
+    "$script_dir/ping_liveness_local.sh" $1 || exit_status=$?
+    "$script_dir/ping_liveness_master.sh" $1 || exit_status=$?
+    exit $exit_status
+---
+# Source: mailu/charts/redis/templates/scripts-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: release-name-redis-scripts
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+data:
+  start-master.sh: |
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    if [[ -f /opt/bitnami/redis/mounted-etc/master.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/master.conf /opt/bitnami/redis/etc/master.conf
+    fi
+    if [[ -f /opt/bitnami/redis/mounted-etc/redis.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/redis.conf /opt/bitnami/redis/etc/redis.conf
+    fi
+    ARGS=("--port" "${REDIS_PORT}")
+    ARGS+=("--protected-mode" "no")
+    ARGS+=("--include" "/opt/bitnami/redis/etc/redis.conf")
+    ARGS+=("--include" "/opt/bitnami/redis/etc/master.conf")
+    exec redis-server "${ARGS[@]}"
+---
+# Source: mailu/templates/envvars-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: release-name-mailu-envvars
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+data:
+  ADMIN: "true"
+  ANTIVIRUS_ACTION: "discard"
+  AUTH_RATELIMIT_EXEMPTION_LENGTH: "86400"
+  AUTH_RATELIMIT_EXEMPTION: ""
+  AUTH_RATELIMIT_IP_V4_MASK: "24"
+  AUTH_RATELIMIT_IP_V6_MASK: "56"
+  AUTH_RATELIMIT_IP: "60/hour"
+  AUTH_RATELIMIT_USER: "100/day"
+  BABEL_DEFAULT_LOCALE: "en"
+  BABEL_DEFAULT_TIMEZONE: "UTC"
+  BOOTSTRAP_SERVE_LOCAL: "true"
+  COMPRESSION_LEVEL: "6"
+  COMPRESSION: ""
+  CREDENTIAL_ROUNDS: "12"
+  DB_FLAVOR: sqlite
+  DB_HOST: ":3306"
+  DB_NAME: "mailu"
+  # DB_PW => via secret
+  DB_USER: "mailu"
+  DEBUG_ASSETS: ""
+  DEBUG: "false"
+  DEBUG_PROFILER: "false"
+  DEBUG_TB_INTERCEPT_REDIRECTS: "false"
+  DEFAULT_QUOTA: "1000000000"
+  DEFAULT_SPAM_THRESHOLD: "80"
+  DEFER_ON_TLS_ERROR: ""
+  DISABLE_STATISTICS: "false"
+  DKIM_PATH: "/dkim/{domain}.{selector}.key"
+  DKIM_SELECTOR: "dkim"
+  DMARC_RUA: ""
+  DMARC_RUF: ""
+  DOMAIN_REGISTRATION: "false"
+  DOMAIN: "mail.k-devops.net"
+  FETCHMAIL_DELAY: "600"
+  FETCHMAIL_ENABLED: "false"
+  HOSTNAMES: mail.k-devops.net
+  INBOUND_TLS_ENFORCE: ""
+  INSTANCE_ID_PATH: "/data/instance"
+  KUBERNETES_INGRESS: "true"
+  LETSENCRYPT_SHORTCHAIN: "false"
+  LOG_LEVEL: "WARNING"
+  LOGO_BACKGROUND: ""
+  LOGO_URL: ""
+  MAILU_HELM_CHART: "true"
+  # Temporary workaround for https://github.com/Mailu/helm-charts/issues/309 until MAILU_HELM_CHART is taken into consideration in Mailu
+  I_KNOW_MY_SETUP_DOESNT_FIT_REQUIREMENTS_AND_WONT_FILE_ISSUES_WITHOUT_PATCHES: "true"
+  MEMORY_SESSIONS: "false"
+  MESSAGE_RATELIMIT_EXEMPTION: ""
+  MESSAGE_RATELIMIT: "200/day"
+  MESSAGE_SIZE_LIMIT: "52428800"
+  OUTBOUND_TLS_LEVEL: ""
+  PERMANENT_SESSION_LIFETIME: "2592000"
+  POSTMASTER: "postmaster"
+  PROXY_AUTH_CREATE: "false"
+  PROXY_AUTH_HEADER: "X-Auth-Email"
+  PROXY_AUTH_WHITELIST: ""
+  RATELIMIT_STORAGE_URL: redis://release-name-redis-master.default.svc.cluster.local:6379/2
+  REAL_IP_FROM: ""
+  REAL_IP_HEADER: "X-Forwarded-For"
+  RECAPTCHA_PRIVATE_KEY: ""
+  RECAPTCHA_PUBLIC_KEY: ""
+  RECIPIENT_DELIMITER: "+"
+  REJECT_UNLISTED_RECIPIENT: "yes"
+  RELAYHOST: ""
+  RELAYNETS: ""
+  ROUNDCUBE_DB_FLAVOR: sqlite
+  # SECRET_KEY => via secret
+  SESSION_COOKIE_SECURE: "true"
+  # SESSION_KEY_BITS: 128 # TODO: Fix Mailu to parse int when from string
+  SESSION_TIMEOUT: "3600"
+  SITENAME: "Mailu"
+  SQLALCHEMY_DATABASE_URI: "sqlite:////data/main.db"
+  SQLALCHEMY_TRACK_MODIFICATIONS: "false"
+  SQLITE_DATABASE_FILE: "data/main.db"
+  STATS_ENDPOINT: "19.{}.stats.mailu.io"
+  SUBNET6: ""
+  SUBNET: "10.42.0.0/16"
+  TEMPLATES_AUTO_RELOAD: "true"
+  TLS_FLAVOR: cert
+  TLS_PERMISSIVE: "true"
+  TZ: "Etc/UTC"
+  WEB_ADMIN: "/admin"
+  WEBSITE: "https://mailu.io"
+  WELCOME_BODY: "Welcome to Mailu, your new email service. Please change your password and update your profile."
+  WELCOME_SUBJECT: "Welcome to Mailu"
+  WELCOME: "true"
+  WILDCARD_SENDERS: ""
+
+  # Addresses
+  ADMIN_ADDRESS: release-name-mailu-admin.default.svc.cluster.local
+  ANTISPAM_ADDRESS: release-name-mailu-rspamd.default.svc.cluster.local
+  FRONT_ADDRESS: release-name-mailu-front.default.svc.cluster.local
+  IMAP_ADDRESS: release-name-mailu-dovecot.default.svc.cluster.local
+  REDIS_ADDRESS: release-name-redis-master.default.svc.cluster.local
+  SMTP_ADDRESS: release-name-mailu-postfix.default.svc.cluster.local
+  WEBMAIL: "roundcube"
+  WEB_WEBMAIL: "/webmail"
+  WEBMAIL_ADDRESS: release-name-mailu-webmail.default.svc.cluster.local
+  WEBROOT_REDIRECT: "/webmail"
+  ROUNDCUBE_PLUGINS: "archive,zipdownload,markasjunk,managesieve,enigma,carddav,mailu"
+  WEBDAV: none
+  WEBDAV_ADDRESS: localhost
+  ANTIVIRUS: clamav
+  ANTIVIRUS_ADDRESS: release-name-mailu-clamav.default.svc.cluster.local
+  OLETOOLS_ADDRESS: release-name-mailu-oletools.default.svc.cluster.local
+  SCAN_MACROS: "true"
+---
+# Source: mailu/templates/pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: release-name-mailu-storage
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "100Gi"
+---
+# Source: mailu/charts/redis/templates/headless-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-redis-headless
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: tcp-redis
+      port: 6379
+      targetPort: redis
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: release-name
+---
+# Source: mailu/charts/redis/templates/master/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-redis-master
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: master
+spec:
+  type: ClusterIP
+  internalTrafficPolicy: Cluster
+  sessionAffinity: None
+  ports:
+    - name: tcp-redis
+      port: 6379
+      targetPort: redis
+      nodePort: null
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: master
+---
+# Source: mailu/templates/admin/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-admin
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: admin
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: admin
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+---
+# Source: mailu/templates/clamav/service-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-clamav-headless
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: clamav
+  annotations:
+    # Use this annotation in addition to the actual publishNotReadyAddresses
+    # field below because the annotation will stop being respected soon but the
+    # field is broken in some versions of Kubernetes:
+    # https://github.com/kubernetes/kubernetes/issues/58662
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  # We want all pods in the StatefulSet to have their addresses published for
+  # the sake of the other Postgresql pods even before they're ready, since they
+  # have to be able to talk to each other in order to become ready.
+  publishNotReadyAddresses: true
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: clamav
+  ports:
+    - name: clamav
+      port: 3310
+      targetPort: clamav
+      protocol: TCP
+---
+# Source: mailu/templates/clamav/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-clamav
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: clamav
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: clamav
+  ports:
+    - name: clamav
+      port: 3310
+      targetPort: clamav
+      protocol: TCP
+---
+# Source: mailu/templates/dovecot/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-dovecot
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: dovecot
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: dovecot
+  ports:
+    - name: imap-auth
+      port: 2102
+      protocol: TCP
+    - name: imap-transport
+      port: 2525
+      protocol: TCP
+    - name: imap-default
+      port: 143
+      protocol: TCP
+    - name: pop3
+      port: 110
+      protocol: TCP
+    - name: sieve
+      port: 4190
+      protocol: TCP
+---
+# Source: mailu/templates/front/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-front
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: front
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: front
+  ports:
+    - name: pop3
+      port: 110
+      protocol: TCP
+    - name: pop3s
+      port: 995
+      protocol: TCP
+    - name: imap
+      port: 143
+      protocol: TCP
+    - name: imaps
+      port: 993
+      protocol: TCP
+    - name: smtp
+      port: 25
+      protocol: TCP
+    - name: smtps
+      port: 465
+      protocol: TCP
+    - name: smtpd
+      port: 587
+      protocol: TCP
+    - name: smtp-auth
+      port: 10025
+      protocol: TCP
+    - name: imap-auth
+      port: 10143
+      protocol: TCP
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: sieve
+      port: 14190
+      protocol: TCP
+---
+# Source: mailu/templates/oletools/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-oletools
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: oletools
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: oletools
+  ports:
+  - name: olefy
+    port: 11343
+    protocol: TCP
+---
+# Source: mailu/templates/postfix/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-postfix
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: postfix
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: postfix
+  ports:
+    - name: smtp
+      port: 25
+      protocol: TCP
+    - name: smtp-ssl
+      port: 465
+      protocol: TCP
+    - name: smtp-starttls
+      port: 587
+      protocol: TCP
+    - name: smtp-auth
+      port: 10025
+      protocol: TCP
+---
+# Source: mailu/templates/rspamd/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-rspamd
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: rspamd
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: rspamd
+  ports:
+    - name: rspamd
+      port: 11332
+      protocol: TCP
+    - name: rspamd-http
+      protocol: TCP
+      port: 11334
+---
+# Source: mailu/templates/webmail/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-mailu-webmail
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: webmail
+spec:
+  selector:
+    app.kubernetes.io/name: mailu
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/component: webmail
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+---
+# Source: mailu/templates/admin/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-admin
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: admin
+
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: admin
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: admin
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+
+      containers:
+        - name: admin
+          image: ghcr.io/mailu/admin:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              subPath: admin
+              mountPath: /data
+            - name: data
+              mountPath: /dkim
+              subPath: dkim
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: QUOTA_STORAGE_URL
+              value: redis://release-name-redis-master.default.svc.cluster.local:6379/1
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /ping
+              port: http
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /ping
+              port: http
+          securityContext:
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: release-name-mailu-storage
+---
+# Source: mailu/templates/dovecot/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-dovecot
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: dovecot
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: dovecot
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: dovecot
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: dovecot
+          image: ghcr.io/mailu/dovecot:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              subPath: dovecotdata
+              mountPath: /data
+            - name: data
+              subPath: dovecotmail
+              mountPath: /mail
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: auth
+              containerPort: 2102
+              protocol: TCP
+            - name: lmtp
+              containerPort: 2525
+              protocol: TCP
+            - name: imap
+              containerPort: 143
+              protocol: TCP
+            - name: pop3
+              containerPort: 110
+              protocol: TCP
+            - name: sieve
+              containerPort: 4190
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+            exec:
+              command:
+                - sh
+                - -c
+                - 'kill -0 `cat /run/dovecot/master.pid`'
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+            exec:
+              command:
+                - sh
+                - -c
+                - 'kill -0 `cat /run/dovecot/master.pid`'
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: release-name-mailu-storage
+---
+# Source: mailu/templates/front/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-front
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: front
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: front
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: front
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: front
+          image: ghcr.io/mailu/nginx:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: pop3
+              protocol: TCP
+              containerPort: 110
+              hostPort: 110
+            - name: pop3s
+              protocol: TCP
+              containerPort: 995
+              hostPort: 995
+            - name: imap
+              protocol: TCP
+              containerPort: 143
+              hostPort: 143
+            - name: imaps
+              protocol: TCP
+              containerPort: 993
+              hostPort: 993
+            - name: smtp
+              protocol: TCP
+              containerPort: 25
+              hostPort: 25
+            - name: smtps
+              protocol: TCP
+              containerPort: 465
+              hostPort: 465
+            - name: smtp-auth
+              protocol: TCP
+              containerPort: 10025
+            - name: imap-auth
+              protocol: TCP
+              containerPort: 10143
+            - name: smtpd
+              protocol: TCP
+              containerPort: 587
+              hostPort: 587
+            - name: auth
+              containerPort: 8000
+              protocol: TCP
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: sieve
+              containerPort: 14190
+              protocol: TCP
+            
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            httpGet:
+              path: /health
+              port: http
+      volumes:
+        - name: certs
+          secret:
+            items:
+              - key: tls.crt
+                path: cert.pem
+              - key: tls.key
+                path: key.pem
+            secretName: release-name-mailu-certificates
+---
+# Source: mailu/templates/oletools/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-oletools
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: oletools
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: oletools
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: oletools
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: oletools
+          image: ghcr.io/mailu/oletools:2.0.30
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: olefy
+              containerPort: 11343
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - 'echo PING|nc -q1 localhost 11343|grep PONG'
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - 'echo PING|nc -q1 localhost 11343|grep PONG'
+---
+# Source: mailu/templates/postfix/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-postfix
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: postfix
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: postfix
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: postfix
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: postfix
+          image: ghcr.io/mailu/postfix:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /queue
+              name: data
+              subPath: mailqueue
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: smtp
+              containerPort: 25
+              protocol: TCP
+            - name: smtp-ssl
+              containerPort: 465
+              protocol: TCP
+            - name: smtp-starttls
+              containerPort: 587
+              protocol: TCP
+            - name: smtp-auth
+              containerPort: 10025
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          startupProbe:
+            failureThreshold: 30
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - sh
+                - -c
+                - '! /usr/libexec/postfix/master -t'
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - sh
+                - -c
+                - '! /usr/libexec/postfix/master -t'
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - sh
+                - -c
+                - '! /usr/libexec/postfix/master -t'
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: release-name-mailu-storage
+---
+# Source: mailu/templates/rspamd/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-rspamd
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: rspamd
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: rspamd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: rspamd
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      hostname: rspamd # https://github.com/Mailu/helm-charts/issues/95
+      containers:
+        - name: rspamd
+          image: ghcr.io/mailu/rspamd:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              subPath: rspamd
+              mountPath: /var/lib/rspamd
+            - name: data
+              subPath: rspamd-local.d-maps.d
+              mountPath: /etc/rspamd/local.d/maps.d
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: rspamd
+              containerPort: 11332
+              protocol: TCP
+            - name: rspamd-http
+              containerPort: 11334
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          startupProbe:
+            failureThreshold: 90
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            httpGet:
+              path: /
+              port: rspamd-http
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /
+              port: rspamd-http
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /
+              port: rspamd-http
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: release-name-mailu-storage
+---
+# Source: mailu/templates/webmail/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-mailu-webmail
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: webmail
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: webmail
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: webmail
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: webmail
+          image: ghcr.io/mailu/webmail:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /data
+              name: data
+              subPath: webmail
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - curl
+                - -f
+                - -L
+                - -H
+                - 'User-Agent: health'
+                - "http://localhost/ping"
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - curl
+                - -f
+                - -L
+                - -H
+                - 'User-Agent: health'
+                - "http://localhost/ping"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: release-name-mailu-storage
+---
+# Source: mailu/charts/redis/templates/master/application.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: release-name-redis-master
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.15.2
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: master
+  serviceName: release-name-redis-headless
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis
+        helm.sh/chart: redis-17.15.2
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: master
+      annotations:
+        checksum/configmap: 86bcc953bb473748a3d3dc60b7c11f34e60c93519234d4c37f42e22ada559d47
+        checksum/health: aff24913d801436ea469d8d374b2ddb3ec4c43ee7ab24663d5f8ff1a1b6991a9
+        checksum/scripts: 43cdf68c28f3abe25ce017a82f74dbf2437d1900fd69df51a55a3edf6193d141
+        checksum/secret: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+    spec:
+      
+      securityContext:
+        fsGroup: 1001
+      serviceAccountName: release-name-redis
+      automountServiceAccountToken: true
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: redis
+                    app.kubernetes.io/instance: release-name
+                    app.kubernetes.io/component: master
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: redis
+          image: docker.io/bitnami/redis:7.0.12-debian-11-r19
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            runAsGroup: 0
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+          command:
+            - /bin/bash
+          args:
+            - -c
+            - /opt/bitnami/scripts/start-scripts/start-master.sh
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: REDIS_REPLICATION_MODE
+              value: master
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: REDIS_TLS_ENABLED
+              value: "no"
+            - name: REDIS_PORT
+              value: "6379"
+          ports:
+            - name: redis
+              containerPort: 6379
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            # One second longer than command timeout should prevent generation of zombie processes.
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - /health/ping_liveness_local.sh 5
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - /health/ping_readiness_local.sh 1
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            - name: start-scripts
+              mountPath: /opt/bitnami/scripts/start-scripts
+            - name: health
+              mountPath: /health
+            - name: redis-data
+              mountPath: /data
+            - name: config
+              mountPath: /opt/bitnami/redis/mounted-etc
+            - name: redis-tmp-conf
+              mountPath: /opt/bitnami/redis/etc/
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: start-scripts
+          configMap:
+            name: release-name-redis-scripts
+            defaultMode: 0755
+        - name: health
+          configMap:
+            name: release-name-redis-health
+            defaultMode: 0755
+        - name: config
+          configMap:
+            name: release-name-redis-configuration
+        - name: redis-tmp-conf
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+  volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: redis-data
+        labels:
+          app.kubernetes.io/name: redis
+          app.kubernetes.io/instance: release-name
+          app.kubernetes.io/component: master
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: mailu/templates/clamav/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: release-name-mailu-clamav
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: clamav
+spec:
+  replicas: 
+  updateStrategy:
+    type: RollingUpdate
+  serviceName: "release-name-mailu-clamav-headless"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailu
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/component: clamav
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailu
+        helm.sh/chart: mailu-1.5.0
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: clamav
+    spec:
+      
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: clamav
+          image: ghcr.io/mailu/clamav:2.0.30
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              subPath: clamav
+              mountPath: /data
+          env:
+            - name: LOG_LEVEL
+              value: WARNING
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: release-name-mailu-secret
+                  key: secret-key
+            - name: ROUNDCUBE_DB_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mailu-roundcube
+                  key: roundcube-db-password
+          envFrom:
+            - configMapRef:
+                name: release-name-mailu-envvars
+          ports:
+            - name: clamav
+              containerPort: 3310
+              protocol: TCP
+          resources:
+            limits: {}
+            requests: {}
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - sh
+                - -c
+                - 'kill -0 `cat /run/clamd.pid` && kill -0 `cat /run/freshclam.pid`'
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            exec:
+              command:
+                - sh
+                - -c
+                - 'kill -0 `cat /run/clamd.pid` && kill -0 `cat /run/freshclam.pid`'
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app.kubernetes.io/name: mailu
+          helm.sh/chart: mailu-1.5.0
+          app.kubernetes.io/instance: release-name
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/component: clamav
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "2Gi"
+---
+# Source: mailu/templates/front/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: release-name-mailu
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: mailu
+    helm.sh/chart: mailu-1.5.0
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+spec:
+  rules:
+    - host: "mail.k-devops.net"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: release-name-mailu-front
+                port:
+                  name: http
+  tls:

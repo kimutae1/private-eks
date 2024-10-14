@@ -1,0 +1,6 @@
+Env: stg
+OldTag: ks-launchpad-front-202401181741
+NewTag: ks-launchpad-front-202401181755 
+AppType: FrontEnd
+Domain: Kstadium
+ARecord: launchpad

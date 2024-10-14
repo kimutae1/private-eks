@@ -1,0 +1,5 @@
+Env: dev
+OldTag: dex-front-202401261106
+NewTag: dex-front-202401261329 
+AppType: FrontEnd
+Domain: Dex

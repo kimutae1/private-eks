@@ -1,0 +1,9 @@
+Env: stg 
+OldTag: flux-api-202401181036 
+NewTag: flux-api-202401181726 
+AppType: BackEnd
+Domain: Flux
+ARecord: api
+LbConfig:
+  ElbPubOrPri: internal 
+  HealthCheck: /v1/health/check

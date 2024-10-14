@@ -1,0 +1,209 @@
+cat << EOF > kube-ops-view-${cluster_name}.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    application: kube-ops-view
+    component: frontend
+  name: kube-ops-view
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: kube-ops-view
+      component: frontend
+  template:
+    metadata:
+      labels:
+        application: kube-ops-view
+        component: frontend
+    spec:
+      serviceAccountName: kube-ops-view
+      containers:
+      - name: service
+        # see https://github.com/hjacobs/kube-ops-view/releases
+        image: hjacobs/kube-ops-view:23.5.0
+        args:
+        # remove this option to use built-in memory store
+        - --redis-url=redis://kube-ops-view-redis:6379
+        # example to add external links for nodes and pods
+        # - --node-link-url-template=https://kube-web-view.example.org/clusters/{cluster}/nodes/{name}
+        # - --pod-link-url-template=https://kube-web-view.example.org/clusters/{cluster}/namespaces/{namespace}/pods/{name}
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 5
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kube-ops-view
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/load-balancer-name: alb-${cluster_name}-ov
+    alb.ingress.kubernetes.io/group.name: tg-${cluster_name}-ov
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: $cert_arn
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+    alb.ingress.kubernetes.io/target-type: 'ip'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    external-dns.alpha.kubernetes.io/hostname: ${service_name}-ov.${dns_zone}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kube-ops-view
+            port:
+              number: 80
+---
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-ops-view
+  namespace: kube-system
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-ops-view
+  namespace: kube-system
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "pods"]
+  verbs:
+    - list
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["nodes", "pods"]
+  verbs:
+    - get
+    - list
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-ops-view
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-ops-view
+subjects:
+- kind: ServiceAccount
+  name: kube-ops-view
+  namespace: kube-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    application: kube-ops-view
+    component: redis
+  name: kube-ops-view-redis
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: kube-ops-view
+      component: redis
+  template:
+    metadata:
+      labels:
+        application: kube-ops-view
+        component: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          # we need to use the "redis" uid
+          runAsUser: 999
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    application: kube-ops-view
+    component: redis
+  name: kube-ops-view-redis
+  namespace: kube-system
+spec:
+  selector:
+    application: kube-ops-view
+    component: redis
+  # type: ClusterIP
+  type: NodePort
+  ports:
+  - port: 6379
+    protocol: TCP
+    targetPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    application: kube-ops-view
+    component: frontend
+  name: kube-ops-view
+  namespace: kube-system
+spec:
+  selector:
+    application: kube-ops-view
+    component: frontend
+  # type: ClusterIP
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+EOF
+
+kubectl apply -f kube-ops-view-${cluster_name}.yaml

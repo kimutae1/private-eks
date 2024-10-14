@@ -1,0 +1,8 @@
+Env: dev
+OldTag: ks-detector-service-202401221100
+NewTag: ks-detector-service-202401241106 
+AppType: FrontEnd 
+Domain: Kstadium
+CommonSecretSelect: 
+  - Detector-Service
+NotUseLb: true

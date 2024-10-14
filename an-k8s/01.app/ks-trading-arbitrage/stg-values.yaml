@@ -1,0 +1,8 @@
+Env: stg 
+OldTag: ks-trading-arbitrage-202401251114 
+NewTag: ks-trading-arbitrage-202401251638 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: arbitrage
+LbConfig: 
+  HealthCheck: /healthcheck

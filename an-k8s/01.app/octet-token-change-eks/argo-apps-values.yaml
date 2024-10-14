@@ -1,0 +1,27 @@
+applications: 
+- name: octet-token-test
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:kstadium/kstadium-k8s.git
+    targetRevision: develop
+    path: manifest/apps/common
+    helm:
+      valueFiles:
+        - common-values.yaml
+        - ../octet-token-test/values.yaml
+  destination:
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+

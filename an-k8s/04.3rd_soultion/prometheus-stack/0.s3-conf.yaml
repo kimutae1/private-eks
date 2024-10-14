@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  s3-conf.yaml: dHlwZTogczMKY29uZmlnOgogIGJ1Y2tldDogInMzLWRldi10aGFub3MiCiAgZW5kcG9pbnQ6ICJzMy5hcC1ub3J0aGVhc3QtMi5hbWF6b25hd3MuY29tIgogIHJlZ2lvbjogImFwLW5vcnRoZWFzdC0yIgogIGF3c19zZGtfYXV0aDogdHJ1ZQogIHRyYWNlOgogICAgZW5hYmxlZDogdHJ1ZQo=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: thanos-s3-secret
+  namespace: kube-system

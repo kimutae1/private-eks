@@ -1,0 +1,12 @@
+Env: dev
+OldTag: ks-auth-service-202312221332
+NewTag: ks-auth-service-202312261706 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: auth-api
+CommonSecretSelect:
+  - Main
+OptionalSecretManagerSelect:
+  - Octet
+LbConfig: 
+  HealthCheck: /kstadium/api/v1/auth/client/healthcheck

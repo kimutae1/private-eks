@@ -1,0 +1,9 @@
+Env: dev
+OldTag: flux-api-202401161638 
+NewTag: flux-api-202401181635 
+AppType: BackEnd
+Domain: Flux
+ARecord: api
+LbConfig:
+  ElbPubOrPri: internal
+  HealthCheck: /v1/health/check

@@ -1,0 +1,5 @@
+Env: dev
+OldTag: flux-front-202401161650
+NewTag: flux-front-202401181636 
+AppType: FrontEnd
+Domain: Flux

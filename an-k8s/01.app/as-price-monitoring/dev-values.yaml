@@ -1,0 +1,6 @@
+Env: dev
+OldTag: as-price-monitoring-202401251714
+NewTag: as-price-monitoring-202401291537
+AppType: BackEnd
+NotUseLb: true
+

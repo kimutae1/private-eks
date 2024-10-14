@@ -1,0 +1,9 @@
+Env: stg
+Replicas: 2
+OldTag: dex-api-202401291521
+NewTag: dex-api-202401291521
+AppType: BackEnd
+Domain: Dex
+ARecord: api
+LbConfig: 
+  HealthCheck: /v1/health

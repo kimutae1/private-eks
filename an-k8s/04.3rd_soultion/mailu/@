@@ -1,0 +1,6 @@
+helm repo add mailu https://mailu.github.io/helm-charts/
+helm show values mailu/mailu > my-values-file.yaml
+helm install mailu mailu/mailu -n mailu-mailserver --values my-values-file.yaml
+
+#uninstall
+#helm uninstall mailu --namespace=mailu-mailserver

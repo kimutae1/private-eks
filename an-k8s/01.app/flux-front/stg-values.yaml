@@ -1,0 +1,5 @@
+Env: stg 
+OldTag: flux-front-202401181121 
+NewTag: flux-front-202401181729 
+AppType: FrontEnd
+Domain: Flux

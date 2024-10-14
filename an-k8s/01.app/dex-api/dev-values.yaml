@@ -1,0 +1,10 @@
+Env: dev
+OldTag: dex-api-202401291509
+NewTag: dex-api-202401291753
+AppType: BackEnd
+Domain: Dex
+ARecord: api
+CommonSecretSelect: 
+  - Dex
+LbConfig: 
+  HealthCheck: /v1/health

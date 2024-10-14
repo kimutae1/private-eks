@@ -1,0 +1,12 @@
+      dnsPolicy: "ClusterFirst"
+      dnsConfig:
+        nameservers:
+          - 205.251.193.29
+          - 205.251.199.80
+
+
+spec:
+  containers:
+    - name: dns-test
+      image: arisu1000/simple-container-app:latest
+  dnsPolicy: ClusterFirst

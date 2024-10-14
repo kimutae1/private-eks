@@ -1,0 +1,13 @@
+EHLO dev.kstadium.io
+AUTH LOGIN
+QUtJQTVJU1RINU1EUElYNks0Tlo=
+QkIzcmpzVEZJYklBWjMxYkZ6WmJXYUptZGt6NDhkMlc5YWhjRVdlc0pJbW8=
+MAIL FROM: noreply@dev.kstadium.io
+RCPT TO: dorian.kim@mail.dev.kstadium.io
+DATA
+From: Sender Name <noreply@dev.kstadium.io>
+To: dorian.kim@mail.dev.kstadium.io
+Subject: Amazon SES SMTP test
+dorian open ssl test mail
+.
+QUIT

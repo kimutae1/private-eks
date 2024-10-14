@@ -1,0 +1,18 @@
+Env: stg 
+OldTag: oldtag2
+NewTag: ks-ground-chain-service-202401221527 
+AppType: FrontEnd
+Domain: Kstadium
+ARecord: gnd-api
+CommonSecretSelect: 
+  - Ground-Chain-Service
+LbConfig:
+  ElbPubOrPri: internal
+  HealthCheck: /api/v1/swagger-ui.html
+  ListenPorts:
+    - protocol: HTTP
+      port: 80
+    - protocol: HTTPS
+      port: 443
+    - protocol: HTTP
+      port: 3000
