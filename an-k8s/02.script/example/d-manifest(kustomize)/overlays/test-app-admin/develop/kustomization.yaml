@@ -18,7 +18,7 @@ commonAnnotations:
  svc: kstadium
 
 images:
-#- name: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
-- name: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:test
-  newName: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
+#- name: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
+- name: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:test
+  newName: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
   newTag: c699385

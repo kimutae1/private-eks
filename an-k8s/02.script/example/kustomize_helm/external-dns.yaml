@@ -7,7 +7,7 @@ metadata:
   # Otherwise, you may safely omit it.
   annotations:
     # Substitute your account ID and IAM service role name below.
-    eks.amazonaws.com/role-arn: arn:aws:iam::911781391110:role/dev-kstadium-service-external-dns
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/dev-kstadium-service-external-dns
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole

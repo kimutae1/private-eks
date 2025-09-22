@@ -3,7 +3,7 @@ kind: ServiceAccount
 metadata:
   namespace: managed
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-kstadium-managed-eks-svc-role"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/dev-kstadium-managed-eks-svc-role"
   name: argocd-application-controller
 ---
 apiVersion: v1
@@ -11,5 +11,5 @@ kind: ServiceAccount
 metadata:
   namespace: managed
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-kstadium-managed-eks-svc-role"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/dev-kstadium-managed-eks-svc-role"
   name: argocd-server

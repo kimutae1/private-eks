@@ -23,7 +23,7 @@ spec:
             secretProviderClass: "aws-common-secret"
       containers:
       - name: app-deployment
-        image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin:latest
+        image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin:latest
         # envFrom:
         #   - configMapRef: 
         #       name: env-configmap

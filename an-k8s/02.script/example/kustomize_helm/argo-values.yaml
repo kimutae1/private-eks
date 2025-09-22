@@ -55,7 +55,7 @@ configs:
         config:
           awsAuthConfig:
             clusterName: dev-kstadium-service
-            roleARN: arn:aws:iam::911781391110:role/EKS-SA-Role
+            roleARN: arn:aws:iam::123456789012:role/EKS-SA-Role
           tlsClientConfig:
             insecure: false # TLS 인증x
             #insecure: true # TLS 인증x
@@ -67,7 +67,7 @@ configs:
         config:
           awsAuthConfig:
             clusterName: dev-kstadium-gndchain
-            roleARN: arn:aws:iam::911781391110:role/EKS-SA-Role
+            roleARN: arn:aws:iam::123456789012:role/EKS-SA-Role
           tlsClientConfig:
             insecure: false # TLS 인증x
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSlU1OXlieWl0TVV3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1UVXdOalU1TlRGYUZ3MHpNekE1TVRJd05qVTVOVEZhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURoMUpJMTRaeDdJN04rZVhKSllnd3o1cFBVbkdqbmZpWGlqUU4zUTRQS0hRN1h0bzFRVDF5b2VwTUkKWC96M0c4amlRZk9BUGlXZEdzQ2Q5a05SV1Q1cnI2RVBWUFF4MTJBZzlZNUxhWW9Rb09iRC9BVFNKUlBsS3dlRQpESmdXdXRPLzBIbVFJUlpUNlNtUnJCeVhnaE5ZSlhQSHFTajRlQWtCN1FDQk8yZUVnU0xYQ0pETmZRMlpGSVZIClNrcDBzbmppcmhnc0JUYlVGN0ZLQVpwWUI1dnN5Zkp3eVN3ZllGS1htUGZIaFJpV1NzSWt0eWVWNUpKc0FBUTcKU1VXRjRtNmFweWp6TTh3c0RzYWw3M3F5b0dRK3JDc0F4YWZTSExNS292SjJ1VSt2bEhtWUJ3Y0tIdkhmNGtlWgphUWs2YTVOd1MrYU85TTkvbm5PRHIwN2Jhd3lYQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSdkh0YjZPZzFrVndQam1jTGgxSklCUGZ4aDV6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQzUySE5rV2NvUwpSTldmU2MxNVQ2TUUzTzI2NjlVbUJlQU1NRGVaSGo5cnhXYU94bjJFSWozbDlvOFpCUVhTUThtdVRodTFpY0xLCkhrbytRT0E0US9aOXBJRTNXOTNFRXpiWVc3a2VMVDRrN3BsdE1DZHZjb2I5dVJOc2lrOGhWVmdsQ0loZXpEVzYKbmpWWmRmeGhXZ3JYdHNQa1UyMWRrM0lTdlJVNHU3UlFvWWFhbFJra28vY1dLZitaZzRRYmtCS3dIREc5aTd6UAp4TldSekJmeldyZ0ZtcGRTbE5zZ1RjZGo1OCtITTBIZnVOczFaOTVKQ0NEaDYrN0p6V3B3S21LWjJaN29nRjNYCll3bnFDT1JVNlVOcTF0MjNNNXFpRjlJdUtpVU5MNTErUTNrRkRDeTJsaC80b1M4MUlTRjFKM1pybFVHd1FjaDIKdFlva0lGeDIzK294Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
@@ -85,7 +85,7 @@ server:
       alb.ingress.kubernetes.io/load-balancer-name: alb-dev-kstadium-managed-argo
       alb.ingress.kubernetes.io/group.name: tg-dev-kstadium-managed-argo
       alb.ingress.kubernetes.io/scheme: internet-facing
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:911781391110:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:123456789012:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
       alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
       alb.ingress.kubernetes.io/backend-protocol: HTTPS
       alb.ingress.kubernetes.io/healthcheck-path: /
@@ -102,14 +102,14 @@ server:
     create: true
     name: argocd-server
     annotations: 
-        eks.amazonaws.com/role-arn: arn:aws:iam::911781391110:role/EKS-SA-Role
+        eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/EKS-SA-Role
     automountServiceAccountToken: true
 controller:
   serviceAccount:
     create: true
     name: argocd-application-controller
     annotations: 
-        eks.amazonaws.com/role-arn: arn:aws:iam::911781391110:role/EKS-SA-Role
+        eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/EKS-SA-Role
     automountServiceAccountToken: true
 
 

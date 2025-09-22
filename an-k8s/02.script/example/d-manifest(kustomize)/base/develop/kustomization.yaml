@@ -6,8 +6,8 @@ kind: Kustomization
 
 
 #images:
-#- name: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
-#  newName: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default
+#- name: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
+#  newName: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default
 #  #newName: my.docker.registry.com/my-project/app-admin # 새로운 이미지 주소
 #  newTag: test # 새로운 이미지 태그
 

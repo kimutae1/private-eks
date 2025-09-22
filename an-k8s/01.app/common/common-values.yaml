@@ -3,32 +3,32 @@ Replicas: 1
 AWS:
   Dev:
     Region: ap-northeast-2
-    AccountId: "911781391110"
+    AccountId: "123456789012"
     Branch: develop
     Domain:
       Kstadium:
         HostingZone: dev.kstadium.io
-        CertArn: "arn:aws:acm:ap-northeast-2:911781391110:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858"
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858"
       Dex:
         HostingZone: dev.atheneswap.io
-        CertArn: "arn:aws:acm:ap-northeast-2:911781391110:certificate/351df0f0-7fe1-4532-98b0-84da825c55e4"
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/351df0f0-7fe1-4532-98b0-84da825c55e4"
       Flux:
         HostingZone: dev.k-flux.xyz
-        CertArn: "arn:aws:acm:ap-northeast-2:911781391110:certificate/11739cd4-ca8b-42b7-9093-e552f0ee1642"  
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/11739cd4-ca8b-42b7-9093-e552f0ee1642"  
   Stg:
     Region: ap-northeast-2
-    AccountId: "779626203419"
+    AccountId: "123456789012"
     Branch: release
     Domain:
       Kstadium:
         HostingZone: stg.kstadium.io
-        CertArn: "arn:aws:acm:ap-northeast-2:779626203419:certificate/1671e278-0b19-407a-8d92-9c622fd13ba6"
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/1671e278-0b19-407a-8d92-9c622fd13ba6"
       Dex:
         HostingZone: stg.atheneswap.io
-        CertArn: "arn:aws:acm:ap-northeast-2:779626203419:certificate/72a2b9da-99ef-47ab-a2e2-eca6b6328066"
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/72a2b9da-99ef-47ab-a2e2-eca6b6328066"
       Flux:
         HostingZone: stg.k-flux.xyz
-        CertArn: "arn:aws:acm:ap-northeast-2:779626203419:certificate/c58dc8db-91e5-460a-bfd2-19422ceb9dbb"  
+        CertArn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/c58dc8db-91e5-460a-bfd2-19422ceb9dbb"  
   Prd:
     Region: ap-northeast-2
     AccountId: "033240183289"

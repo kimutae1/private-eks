@@ -15,7 +15,7 @@ repo url 과 credential 을 입력 한다.
 ```
 settings -> repository -> connect repo
 https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/Argo-CD-Manifests
-username : kth@mydata.re.kr+1-at-339712708344
+username : user@example.com+1-at-123456789012
 ```
 
 ![alt text](image-2.png)

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: default
-        #image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/${MY_SERVICE_NAME}:latest
-        image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
+        #image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/${MY_SERVICE_NAME}:latest
+        image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
         ports:
         - containerPort: 3000

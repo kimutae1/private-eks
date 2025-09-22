@@ -223,7 +223,7 @@ items:
   kind: ServiceAccount
   metadata:
     annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::339712708344:role/AmazonEKSLoadBalancerControllerRole
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/AmazonEKSLoadBalancerControllerRole
     creationTimestamp: "2024-05-31T07:27:29Z"
     labels:
       app.kubernetes.io/managed-by: eksctl
@@ -318,7 +318,7 @@ items:
   kind: ServiceAccount
   metadata:
     annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::339712708344:role/AmazonEKS_EBS_CSI_DriverRole
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/AmazonEKS_EBS_CSI_DriverRole
     creationTimestamp: "2024-05-31T07:13:53Z"
     labels:
       app.kubernetes.io/component: csi-driver

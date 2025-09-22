@@ -52,7 +52,7 @@ data:
     - groups:
       - system:bootstrappers
       - system:nodes
-      rolearn: arn:aws:iam::381492026218:role/eks-node-role
+      rolearn: arn:aws:iam::123456789012:role/eks-node-role
       username: system:node:{{EC2PrivateDNSName}}
 kind: ConfigMap
 metadata:
@@ -70,8 +70,8 @@ metadata:
 ```
 ❯ aws sts get-caller-identity
     "UserId": "AIDAVRUVSLNVOTJAXOWWL",
-    "Account": "381492026218",
-    "Arn": "arn:aws:iam::381492026218:user/taehyung.kim@bespinglobal.com"
+    "Account": "123456789012",
+    "Arn": "arn:aws:iam::123456789012:user/user@example.com"
 ```
 
 
@@ -89,21 +89,21 @@ data:
     - groups:
       - system:bootstrappers
       - system:nodes
-      rolearn: arn:aws:iam::381492026218:role/eks-node-role
+      rolearn: arn:aws:iam::123456789012:role/eks-node-role
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
     - groups:
       - system:bootstrappers
       - system:nodes
       - system:masters
-      userarn: arn:aws:iam::381492026218:user/taehyung.kim@bespinglobal.com
-      username: taehyung.kim@bespinglobal.com
+      userarn: arn:aws:iam::123456789012:user/user@example.com
+      username: user@example.com
 
     - groups:
       - system:bootstrappers
       - system:nodes
       - system:masters
-      userarn: arn:aws:iam::381492026218:user/dongjoon.kim@bespinglobal.com
+      userarn: arn:aws:iam::123456789012:user/dongjoon.kim@bespinglobal.com
       username: dongjoon.kim@bespinglobal.com
 ```
 

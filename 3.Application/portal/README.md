@@ -22,11 +22,11 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
 
 ```json
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:381492026218:task-definition/stg-an-custom-portal-sso-web:6",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:123456789012:task-definition/stg-an-custom-portal-sso-web:6",
     "containerDefinitions": [
         {
             "name": "portal-sso-web",
-            "image": "381492026218.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web",
+            "image": "123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web",
             "cpu": 0,
             "portMappings": [
                 {
@@ -73,8 +73,8 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
         }
     ],
     "family": "stg-an-custom-portal-sso-web",
-    "taskRoleArn": "arn:aws:iam::381492026218:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::381492026218:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "revision": 6,
     "volumes": [],
@@ -123,7 +123,7 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
         "operatingSystemFamily": "LINUX"
     },
     "registeredAt": "2024-07-08T13:50:56.147Z",
-    "registeredBy": "arn:aws:iam::381492026218:user/taehyung.kim@bespinglobal.com",
+    "registeredBy": "arn:aws:iam::123456789012:user/user@example.com",
     "tags": []
 }
 
@@ -168,7 +168,7 @@ spec:
                - arm64
      containers:
      - name: portal-sso-web
-       image: 381492026218.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web
+       image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web
        ports:
        - containerPort: 80
        - containerPort: 443
@@ -226,7 +226,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/load-balancer-name: alb-an-dj-eks-portal-front-end
     alb.ingress.kubernetes.io/group.name: tg-an-dj-eks-portal-front-end
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:381492026218:certificate/f67870a1-7aae-4717-849a-090af81b6455
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:123456789012:certificate/f67870a1-7aae-4717-849a-090af81b6455
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
     alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/healthcheck-path: /auth

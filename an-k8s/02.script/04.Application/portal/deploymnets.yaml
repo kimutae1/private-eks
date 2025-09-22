@@ -28,7 +28,7 @@ spec:
                - arm64
      containers:
      - name: portal-sso-web
-       image: 381492026218.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web
+       image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web
        ports:
        - containerPort: 80
        - containerPort: 443

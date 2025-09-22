@@ -18,8 +18,8 @@ resources:
 patches:
 - path: ./replica.yaml
 images:
-- name: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
-  newName: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
+- name: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
+  newName: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
   newTag: c699385
-## # newName: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/${MY_SERVICE_NAME}
-##  newName: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
+## # newName: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/${MY_SERVICE_NAME}
+##  newName: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin

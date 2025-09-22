@@ -42,7 +42,7 @@ managedNodeGroups:
       #    cloudWatch: true # cloudWatch에 대한 권한 추가
       #    autoScaler: true # auto scaling에 대한 권한 추가
       #    ebs: true # EBS CSI Driver에 대한 권한 추가
-      instanceRoleARN: arn:aws:iam::381492026218:role/eks-node-role
+      instanceRoleARN: arn:aws:iam::123456789012:role/eks-node-role
 
 cloudWatch:
   clusterLogging:

@@ -30,12 +30,12 @@ jobs:
           if [ "${{ steps.vars.outputs.branch_name }}" = "develop" ]; then
             ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_DEVELOP_ACCESS_KEY_ID }}
             SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_DEVELOP_SECRET_ACCESS_KEY }}
-            ACCOUNT_ID=911781391110
+            ACCOUNT_ID=123456789012
             AWS_REGION=ap-northeast-2
           elif [ "${{ steps.vars.outputs.branch_name }}" = "release" ]; then
             ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_STAGE_ACCESS_KEY_ID }}
             SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_STAGE_SECRET_ACCESS_KEY }}
-            ACCOUNT_ID=779626203419
+            ACCOUNT_ID=123456789012
             AWS_REGION=ap-northeast-2
           elif [ "${{ steps.vars.outputs.branch_name }}" = "main" ]; then
             ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_PRODUCTION_ACCESS_KEY_ID }}
