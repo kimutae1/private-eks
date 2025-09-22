@@ -2,7 +2,7 @@
 
 ## diagrams
 
-![1](diagrams/alertnow_custom_architecture.png)
+![1](diagrams/privateeks_custom_architecture)
 
 ## Install
 
