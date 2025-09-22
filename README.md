@@ -1,12 +1,13 @@
-# private-eks KBDS Project
+# privateEKS custom Project
+
 ## diagrams
-![1](diagrams/alertnow_kbds_architecture.png)
+
+![1](diagrams/alertnow_custom_architecture.png)
 
 ## Install
+
 [install](./install.md)
-## Tools 
+
+## Tools
+
 [bitbucekt 관리](scripts/bitbucket.md)
-
-
-# private-eks
-# private-eks
