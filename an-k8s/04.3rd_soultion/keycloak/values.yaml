@@ -7,7 +7,7 @@ auth:
 
 ingress:
   enabled: true
-  hostname: auth.dev.kstadium.io
+  hostname: auth.dev.example-project.io
   path: /*
   servicePort: https
   annotations:

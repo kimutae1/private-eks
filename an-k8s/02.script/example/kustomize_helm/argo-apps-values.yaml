@@ -7,7 +7,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -33,7 +33,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -59,7 +59,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -85,7 +85,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -111,7 +111,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -137,7 +137,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -163,7 +163,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -189,7 +189,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -215,7 +215,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -241,7 +241,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -267,7 +267,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -293,7 +293,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -319,7 +319,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -345,7 +345,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -371,7 +371,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -397,7 +397,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -423,7 +423,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -449,7 +449,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -475,7 +475,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -501,7 +501,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -527,11 +527,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
     name: 
     namespace: default
@@ -555,11 +555,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-gndchain
+    name: dev-example-project-gndchain
     #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: managed
   syncPolicy:
@@ -582,11 +582,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
     name: 
     namespace: default
@@ -610,11 +610,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-gndchain
+    name: dev-example-project-gndchain
     #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: managed
   syncPolicy:
@@ -637,11 +637,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: default
   syncPolicy:
@@ -664,11 +664,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-gndchain
+    name: dev-example-project-gndchain
     #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: managed
   syncPolicy:
@@ -691,11 +691,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: default
   syncPolicy:
@@ -718,11 +718,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-gndchain
+    name: dev-example-project-gndchain
     #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: default
   syncPolicy:
@@ -745,11 +745,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: default
   syncPolicy:
@@ -772,11 +772,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-gndchain
+    name: dev-example-project-gndchain
     #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
     namespace: default
   syncPolicy:
@@ -799,12 +799,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -826,7 +826,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -852,12 +852,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -879,7 +879,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -905,12 +905,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -932,7 +932,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -958,12 +958,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    #name: dev-kstadium-service
+    #name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -985,7 +985,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -1011,12 +1011,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    #name: dev-kstadium-service
+    #name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -1038,7 +1038,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -1064,12 +1064,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    #name: dev-kstadium-service
+    #name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -1091,7 +1091,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -1117,12 +1117,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    #name: dev-kstadium-service
+    #name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -1144,7 +1144,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -1170,12 +1170,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
     #server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -1197,7 +1197,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
@@ -1223,12 +1223,12 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: d-manifest/dorian-admin/overlays/develop
   destination:
     #server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:
@@ -1250,7 +1250,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:

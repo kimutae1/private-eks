@@ -45,8 +45,8 @@ export $(aws sts get-caller-identity |jq  -r '.|to_entries|.[]|[.key, .value]|jo
 
 export Subnets=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=${env}-custom-subnet-private*-${region_code}*" )
 echo Subnets |jq -r '.Subnets'
-export private_a="subnet-0947044bb30ff3138"
-export private_b="subnet-01e8f39bc63ff2723"
+export private_a="subnet-<private-subnet-a>"
+export private_b="subnet-<private-subnet-b>"
 
 # Security Group
 export SG=sg-0da577e13607dfa16
@@ -110,10 +110,10 @@ Error: error describing cluster stack: no eksctl-managed CloudFormation stacks f
 2024-08-07 09:00:38 [ℹ]  no tasks
 2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
-2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
+2024-08-07 09:00:38 [ℹ]  node "<instance-id-1>.ap-northeast-2.compute.internal" is ready
 2024-08-07 09:00:38 [ℹ]  waiting for at least 1 node(s) to become ready in "nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
-2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
+2024-08-07 09:00:38 [ℹ]  node "<instance-id-1>.ap-northeast-2.compute.internal" is ready
 2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  checking security group configuration for all nodegroups
 2024-08-07 09:00:38 [ℹ]  all nodegroups have up-to-date cloudformation templates

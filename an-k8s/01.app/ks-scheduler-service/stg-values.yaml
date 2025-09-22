@@ -8,7 +8,7 @@ CommonSecretSelect:
   - Scheduler-Service
 LbConfig:
   ElbPubOrPri: internal 
-  HealthCheck: /kstadium/api/v1/scheduler/healthcheck
+  HealthCheck: /example-project/api/v1/scheduler/healthcheck
   ListenPorts:
     - protocol: HTTP
       port: 80

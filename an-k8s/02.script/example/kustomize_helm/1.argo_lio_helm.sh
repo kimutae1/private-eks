@@ -9,8 +9,8 @@ configs:
     
   repositories:
     private-repo:
-      url: git@github.com:the-medium/kstadium-k8s.git
-      name: kstadium-k8s
+      url: git@github.com:the-medium/example-project-k8s.git
+      name: example-project-k8s
       type: git
       sshPrivateKey: |
         -----BEGIN OPENSSH PRIVATE KEY-----
@@ -57,24 +57,24 @@ EOF
 
 cat << EOF >> argo-values.yaml
   clusterCredentials:
-      - name: dev-kstadium-service
+      - name: dev-example-project-service
         server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
         labels:
           argocd.argoproj.io/secret-type: cluster
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-service
-            roleARN: arn:aws:iam::911781391110:role/dev-kstadium-service-eks-svc-role
+            clusterName: dev-example-project-service
+            roleARN: arn:aws:iam::911781391110:role/dev-example-project-service-eks-svc-role
           tlsClientConfig:
             insecure: false # TLS 인증x
             #insecure: true # TLS 인증x
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWkU2TTg4WitMcE13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNE1Ea3dPREUyTXpKYUZ3MHpNekE0TURZd09ERTJNekphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURFdzlqa2NYUExtcVNVK0l0ek9WeFVwa3M5UlAybFkwMWh2WnBxckN4b3RCYTNKQ3h3ZE55VW10eEsKSWViUG1WcWk2Zk85MmkzY2xTamZ4MEYvV09EQXVqQ09WUDVuQkFCMnByQWgzR1ZjSmZaaEF6dmpISmRmMUQ2TQp3Q2t3YVpHeVdZaExhaXpkVlhxSGlFVWVmcHpGMGtsZnI3d2F3M0FLakdGb1hETzdvVFpqTDNUQjZQdXVrcEswCk13d1RkbVZCYWNSNlFkQTdYdElaOTQ3VXphOEZmY2pyZEczQnhkSVFnMFhiM21EbTBUalVOQmh1OGVSNXlaR08KejVtT1VuQ1FKRjl3dmxKc1pKQlhIQXRjZGJ4a20xSUU4WWVWVXN4Zy84SHN5V1dqZTRVY05vSDVWRW0xcm40SgphWUI5RTFVMXBMSE9JaGh2WjlybklDQlFCTFNQQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTVHAzRGh0cWU5cDVWb3FFWW40d2J5aW1DaTd6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRREJTZDhhVVU2MgpCLzQxWjVTNDhYbUJxTnluMmRJZzk2T0RUd3BMclF6VFl5Z0hYMkNvVVdXYm95OE9qNDh6K3pGakh6cHVPeGMzClVEb2UwekNLZVdXZHhXcE0xZXVoWldDcmp5bTd0VFpONFpWM05MTlNCV1ZLUmhFYTZrMkpJS25wcXZ2UHZKWHQKZHZjK2d1czhXangxZHBnQlE2a01VOHBJZnZIRUI5eVlVVHI4MUkzZzZpaVNIVmxlVlpIdy8wWmU0NkZjK0ZyQQoySmJsRmxudGlmTkREc1EyNkpWU28reWRSaElYdk0wK2F2TWtjTE93bFpxRS8xRnRnMHB2VjVCc1dIcWN3bGVnCkUzeS8yaTlZNllLWkk5WDVJQmRaOThITVE4c0pzQUpYSDIxRll3Z1VWNENNczQxbXFJVFVBeHFaQ08rcFVpK3MKN3lLYWdhM1FPZzRXCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
-      - name: dev-kstadium-gndchain
+      - name: dev-example-project-gndchain
         server: https://60444EA20E53E07C53875F6DC1A82CCC.gr7.ap-northeast-2.eks.amazonaws.com
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-gndchain
-            roleARN: arn:aws:iam::911781391110:role/dev-kstadium-gndchain-eks-svc-role
+            clusterName: dev-example-project-gndchain
+            roleARN: arn:aws:iam::911781391110:role/dev-example-project-gndchain-eks-svc-role
           tlsClientConfig:
             insecure: false # TLS 인증x
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSDhvaFlLS29VbTB3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1ERXdOVEkxTWpSYUZ3MHpNekE0TWprd05USTFNalJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURzYmpoTTA2bnlJQTZ5YVdLK2w4V3N3TzFLODdYODg2RVVRdG50RXB5dTZCQUZjenJ2WWJ2NDZERGYKWWkrMGJKNW42aXNPam43d1huRm9kcUlzd0VBd2ZIbEYyUDlUZ3J2YTJUTHBLTGJ2d2FQZXhqYWhpYnN1K0FpQQpVSWN5YUhUNzg1KytQSG01TXZmcVdRNEM2U0tOQXJHWVo5QWVlK050TjR2M2RydGdkTm5ZTjZXektzVG1PUUVPCnhQTFVFSGdQUzRJL3FKUzdoMmttUVJzQTRadFUyZi9IZVgySTZ1VTFqcC9VajBORjlDRnRhT1NHai9zbEcyVHUKd2NPS2pGaGVzYjExeXpJTTFjU0ZTM1ZIWG9ZaFo3ZFdqaC90MXBEMWhmRXlTekZlRGhmSHczQzJiREd2UmhobgpZTVJpVUR6VWFRcTNjdzRCWlhtTkwxYTdROUR0QWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTYnJIc1pXRU9pOHNqTHZBWCtVWWR5UnhlVFVEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRREozZ2Y3UEtqMwpJa0tQbTlNaGkvZng2Nk5GMFNVR3ZQQTJRLzdocmtnNEhadWtpMG11bTNPZWJzYVJDelFqYmlWRjhGZGE3a21JCnUvZkJFT09Pbi9BL05FK2pZR0cwS1FoaElRd0Znb1NzMTFPZlV5U1gxVHpkM0ZGdUV1cENpQnZHdFpoVkFDTWwKNjA0Y0RuK0lqaFgrdUVaWkNTLytHUGpTaS9zdUMxUEMyaHRzc204SVhLdlRNRVRBdjVYZXBJVEJ4QlRqQTJtWgpVY3RaUVNxVVZsNGpBT3VCTWtCaVM1d1R1ei95ZzdtV3dUeW0xcVNLdVJlZkhhQ05XQVg0SGNCWW1ydG5rb0dyClRubjdNdnpDaTVuQndvajlVOStWNllNUTl6ZWlIWjFraVhTQ1dvYndwVkVzQW5qZVV5eU0wdTRFM09wTTcrdkEKQ2FYOXhSSnU3RkNkCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
@@ -104,7 +104,7 @@ server:
       alb.ingress.kubernetes.io/ssl-redirect: '443'
       alb.ingress.kubernetes.io/actions.ssl-redirect: {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
     hosts:
-      #- argo.dev.kstadium.io
+      #- argo.dev.example-project.io
       - $full_domain
     paths:
       - /
@@ -114,7 +114,7 @@ server:
     create: true
     name: argocd-server
     annotations: 
-        eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-kstadium-lio-eks-svc-role"
+        eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-example-project-lio-eks-svc-role"
     automountServiceAccountToken: true
 
 controller:
@@ -122,7 +122,7 @@ controller:
     create: true
     name: argocd-application-controller
     annotations: 
-        eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-kstadium-lio-eks-svc-role"
+        eks.amazonaws.com/role-arn: "arn:aws:iam::911781391110:role/dev-example-project-lio-eks-svc-role"
     automountServiceAccountToken: true
 
 

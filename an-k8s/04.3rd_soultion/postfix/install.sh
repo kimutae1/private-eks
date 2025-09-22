@@ -4,7 +4,7 @@ helm repo add docker-postfix https://bokysan.github.io/docker-postfix/
 #helm upgrade --install --set persistence.enabled=false --set config.general.ALLOW_EMPTY_SENDER_DOMAINS=yes mail bokysan/mail
 
 
-helm upgrade --install --set persistence.enabled=false --set config.general.ALLOWED_SENDER_DOMAINS=mail.dev.kstadium.io mail bokysan/mail
+helm upgrade --install --set persistence.enabled=false --set config.general.ALLOWED_SENDER_DOMAINS=mail.dev.example-project.io mail bokysan/mail
 
 #Postfix service installed. Send email by using the following address and port:
 #export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=mail,app.kubernetes.io/instance=mail" -o jsonpath= "{.items[0].metadata.name}") 

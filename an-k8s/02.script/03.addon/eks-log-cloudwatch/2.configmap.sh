@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ClusterName=dev-kstadium-service
+ClusterName=dev-example-project-service
 RegionName=ap-northeast-2
 FluentBitHttpPort='2020'
 FluentBitReadFromHead='Off'

@@ -29,7 +29,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -38,17 +38,17 @@
         "links": {
           "clone": [
             {
-              "href": "https://code.bespinglobal.com/scm/tk/adminclient2.git",
+              "href": "https://code.example.com/scm/tk/adminclient2.git",
               "name": "http"
             },
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/adminclient2.git",
+              "href": "ssh://git@code.example.com/tk/adminclient2.git",
               "name": "ssh"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/adminclient2/browse"
+              "href": "https://code.example.com/projects/TK/repos/adminclient2/browse"
             }
           ]
         }
@@ -63,7 +63,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -72,17 +72,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/adminclient2.git",
+            "href": "https://code.example.com/scm/ancustom/adminclient2.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/adminclient2.git",
+            "href": "ssh://git@code.example.com/ancustom/adminclient2.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/adminclient2/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/adminclient2/browse"
           }
         ]
       }
@@ -105,7 +105,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -114,17 +114,17 @@
       "links": {
         "clone": [
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/alertnow-kdbc-shared-library.git",
+            "href": "ssh://git@code.example.com/ancustom/alertnow-kdbc-shared-library.git",
             "name": "ssh"
           },
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/alertnow-kdbc-shared-library.git",
+            "href": "https://code.example.com/scm/ancustom/alertnow-kdbc-shared-library.git",
             "name": "http"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/alertnow-kdbc-shared-library/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/alertnow-kdbc-shared-library/browse"
           }
         ]
       }
@@ -147,7 +147,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -156,17 +156,17 @@
       "links": {
         "clone": [
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/argo-cd-manifests.git",
+            "href": "ssh://git@code.example.com/ancustom/argo-cd-manifests.git",
             "name": "ssh"
           },
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/argo-cd-manifests.git",
+            "href": "https://code.example.com/scm/ancustom/argo-cd-manifests.git",
             "name": "http"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/argo-cd-manifests/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/argo-cd-manifests/browse"
           }
         ]
       }
@@ -197,7 +197,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -206,17 +206,17 @@
         "links": {
           "clone": [
             {
-              "href": "https://code.bespinglobal.com/scm/tk/assetspringapi.git",
+              "href": "https://code.example.com/scm/tk/assetspringapi.git",
               "name": "http"
             },
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/assetspringapi.git",
+              "href": "ssh://git@code.example.com/tk/assetspringapi.git",
               "name": "ssh"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/assetspringapi/browse"
+              "href": "https://code.example.com/projects/TK/repos/assetspringapi/browse"
             }
           ]
         }
@@ -231,7 +231,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -240,17 +240,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/assetspringapi.git",
+            "href": "https://code.example.com/scm/ancustom/assetspringapi.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/assetspringapi.git",
+            "href": "ssh://git@code.example.com/ancustom/assetspringapi.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/assetspringapi/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/assetspringapi/browse"
           }
         ]
       }
@@ -273,7 +273,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -282,17 +282,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/docs.git",
+            "href": "https://code.example.com/scm/ancustom/docs.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/docs.git",
+            "href": "ssh://git@code.example.com/ancustom/docs.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/docs/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/docs/browse"
           }
         ]
       }
@@ -323,7 +323,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -332,17 +332,17 @@
         "links": {
           "clone": [
             {
-              "href": "https://code.bespinglobal.com/scm/tk/finopsearthapi.git",
+              "href": "https://code.example.com/scm/tk/finopsearthapi.git",
               "name": "http"
             },
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/finopsearthapi.git",
+              "href": "ssh://git@code.example.com/tk/finopsearthapi.git",
               "name": "ssh"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/finopsearthapi/browse"
+              "href": "https://code.example.com/projects/TK/repos/finopsearthapi/browse"
             }
           ]
         }
@@ -357,7 +357,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -366,17 +366,17 @@
       "links": {
         "clone": [
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/finopsearthapi.git",
+            "href": "ssh://git@code.example.com/ancustom/finopsearthapi.git",
             "name": "ssh"
           },
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/finopsearthapi.git",
+            "href": "https://code.example.com/scm/ancustom/finopsearthapi.git",
             "name": "http"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/finopsearthapi/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/finopsearthapi/browse"
           }
         ]
       }
@@ -407,7 +407,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -416,17 +416,17 @@
         "links": {
           "clone": [
             {
-              "href": "https://code.bespinglobal.com/scm/tk/finopssso.git",
+              "href": "https://code.example.com/scm/tk/finopssso.git",
               "name": "http"
             },
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/finopssso.git",
+              "href": "ssh://git@code.example.com/tk/finopssso.git",
               "name": "ssh"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/finopssso/browse"
+              "href": "https://code.example.com/projects/TK/repos/finopssso/browse"
             }
           ]
         }
@@ -441,7 +441,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -450,17 +450,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/finopssso.git",
+            "href": "https://code.example.com/scm/ancustom/finopssso.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/finopssso.git",
+            "href": "ssh://git@code.example.com/ancustom/finopssso.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/finopssso/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/finopssso/browse"
           }
         ]
       }
@@ -483,7 +483,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -492,17 +492,17 @@
       "links": {
         "clone": [
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/nginx-demo.git",
+            "href": "ssh://git@code.example.com/ancustom/nginx-demo.git",
             "name": "ssh"
           },
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/nginx-demo.git",
+            "href": "https://code.example.com/scm/ancustom/nginx-demo.git",
             "name": "http"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/nginx-demo/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/nginx-demo/browse"
           }
         ]
       }
@@ -534,7 +534,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/OP"
+                "href": "https://code.example.com/projects/OP"
               }
             ]
           }
@@ -543,7 +543,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/OP/repos/opsnow-rds-dump/browse"
+              "href": "https://code.example.com/projects/OP/repos/opsnow-rds-dump/browse"
             }
           ]
         }
@@ -558,7 +558,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -567,17 +567,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/opsnow-rds-dump.git",
+            "href": "https://code.example.com/scm/ancustom/opsnow-rds-dump.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/opsnow-rds-dump.git",
+            "href": "ssh://git@code.example.com/ancustom/opsnow-rds-dump.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/opsnow-rds-dump/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/opsnow-rds-dump/browse"
           }
         ]
       }
@@ -608,7 +608,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -617,17 +617,17 @@
         "links": {
           "clone": [
             {
-              "href": "https://code.bespinglobal.com/scm/tk/portaladminapi.git",
+              "href": "https://code.example.com/scm/tk/portaladminapi.git",
               "name": "http"
             },
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/portaladminapi.git",
+              "href": "ssh://git@code.example.com/tk/portaladminapi.git",
               "name": "ssh"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/portaladminapi/browse"
+              "href": "https://code.example.com/projects/TK/repos/portaladminapi/browse"
             }
           ]
         }
@@ -642,7 +642,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -651,17 +651,17 @@
       "links": {
         "clone": [
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/portaladminapi.git",
+            "href": "ssh://git@code.example.com/ancustom/portaladminapi.git",
             "name": "ssh"
           },
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/portaladminapi.git",
+            "href": "https://code.example.com/scm/ancustom/portaladminapi.git",
             "name": "http"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/portaladminapi/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/portaladminapi/browse"
           }
         ]
       }
@@ -692,7 +692,7 @@
           "links": {
             "self": [
               {
-                "href": "https://code.bespinglobal.com/projects/TK"
+                "href": "https://code.example.com/projects/TK"
               }
             ]
           }
@@ -701,17 +701,17 @@
         "links": {
           "clone": [
             {
-              "href": "ssh://git@code.bespinglobal.com/tk/portalclient2.git",
+              "href": "ssh://git@code.example.com/tk/portalclient2.git",
               "name": "ssh"
             },
             {
-              "href": "https://code.bespinglobal.com/scm/tk/portalclient2.git",
+              "href": "https://code.example.com/scm/tk/portalclient2.git",
               "name": "http"
             }
           ],
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/TK/repos/portalclient2/browse"
+              "href": "https://code.example.com/projects/TK/repos/portalclient2/browse"
             }
           ]
         }
@@ -726,7 +726,7 @@
         "links": {
           "self": [
             {
-              "href": "https://code.bespinglobal.com/projects/ANcustom"
+              "href": "https://code.example.com/projects/ANcustom"
             }
           ]
         }
@@ -735,17 +735,17 @@
       "links": {
         "clone": [
           {
-            "href": "https://code.bespinglobal.com/scm/ancustom/portalclient2.git",
+            "href": "https://code.example.com/scm/ancustom/portalclient2.git",
             "name": "http"
           },
           {
-            "href": "ssh://git@code.bespinglobal.com/ancustom/portalclient2.git",
+            "href": "ssh://git@code.example.com/ancustom/portalclient2.git",
             "name": "ssh"
           }
         ],
         "self": [
           {
-            "href": "https://code.bespinglobal.com/projects/ANcustom/repos/portalclient2/browse"
+            "href": "https://code.example.com/projects/ANcustom/repos/portalclient2/browse"
           }
         ]
       }

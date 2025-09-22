@@ -8,8 +8,8 @@ configs:
     
   repositories:
     private-repo:
-      url: git@github.com:the-medium/kstadium-k8s.git
-      name: kstadium-k8s
+      url: git@github.com:the-medium/example-project-k8s.git
+      name: example-project-k8s
       type: git
       sshPrivateKey: |
         -----BEGIN OPENSSH PRIVATE KEY-----
@@ -56,26 +56,26 @@ EOF
 
 cat << EOF >> argo-values.yaml
   clusterCredentials:
-      - name: dev-kstadium-service
+      - name: dev-example-project-service
         server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
         labels:
           argocd.argoproj.io/secret-type: cluster
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-service
-            roleARN: arn:aws:iam::911781391110:role/dev-kstadium-service-eks-svc-role
+            clusterName: dev-example-project-service
+            roleARN: arn:aws:iam::911781391110:role/dev-example-project-service-eks-svc-role
           tlsClientConfig:
             insecure: false # TLS 인증x
             #insecure: true # TLS 인증x
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJQjhxYndmVjV2bGd3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1EWXdNekEwTlRCYUZ3MHpNekE1TURNd016QTBOVEJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUNiRTJtSzFBaEprSkM2Nk05eERqV0RkQlBMV0xCb29Hd2M5K2pBK2lTR1ZwRHdMbWZiUlRMUUNhZEgKUjdhcDIyQ2YzY09QYzVyc2tJd28zYjhjMlRrVWg0eVIrR09iQ2pOZDhQV05GdElJVG5ac0dpQ0FEajBuZDMxZwp5N0xDTTBOMnVoQkw2ODFNdER4NnNYYkdqUlcxTm0rQ3ptdEFJSHAzREJOK0pFMVN6SXhaWkNZbTdrS0dQZExICjNzbUoreHNNbWRsTDNPanliWTVyWUphWmk3VXNUcVl1VndhWGFYVHNVR2YxbWpkMTBYTnJLYkxzWG1KcWRTQm8KMmFGSklweG90WkViR3ljcDZxREhwb3J1cWZ5ZlhWOEpPQXpPZkIwemtnK0I1N0ZJUXNqbWI4SENKcTNiWFFlNgo5NnB0Q2xRYVdKZTdkbXp4dDRUTFVnZ3o1czBUQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUNHlYc2JhTlFGa3A2dm0yY3ZOVnV5MERtY3B6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQjNZWDJvaWM4dwpNcytFQWlWR0pXN1dNMXlYbWk1YmJjRFYwNHdYSlVpRGFlUG94U2NMYmFkVExHb0RadUpxNmcySzlTTW43dnZNClVvcjhoTXhzaWVVTFhCdWdjdlR0b3EzdXBoa0NMb0NWSUhDUVlVSlJKY0dsZjZrb1BQaDZsOWlxb3NqSmdpZkIKRzdRT3crY3ZFcWtlYms5Q1JlTWYxbXMyaHpiOEdYc0ZXWDhOQ1FHWitTeXlMdWljWEtvc2dWeCtVb29iOWVDUQpud2VyUm1vbmk5aFQ5K0gySU50MllOengzdi9VN2pEYkVQNkVkNi9saVdmeFlnV2VIYW5STjI5dFFNbWs5cFVzCklQRkNISHVFQlcrdG10Qm1DV2hqR0k1TjhkUy9acUVoYkl1MXhKdFZITWduNS9VWlVVRWV6dWFhL21rNXIyaU4KNEFMbTFiQzR6QUJFCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
 
 
-      - name: dev-kstadium-gndchain
+      - name: dev-example-project-gndchain
         server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-gndchain
-            roleARN: arn:aws:iam::911781391110:role/dev-kstadium-gndchain-eks-svc-role
+            clusterName: dev-example-project-gndchain
+            roleARN: arn:aws:iam::911781391110:role/dev-example-project-gndchain-eks-svc-role
           tlsClientConfig:
             insecure: false # TLS 인증x
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSlNOTmc2TmhzR293RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1EUXdPRE0wTURKYUZ3MHpNekE1TURFd09ETTBNREphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM3dkM1SG1sUVRwYzlSUnQ1ajhaVDVEK2pnVm8ybFdZODlCcWFxMzlsc1lqVmJZdndqUTkwY3VhbkUKcTI0bW1ISFY0d0xqV3IxbTUySWFuQjA4amgrWUZsQlB6L1hNMzlmYWtZNHc0b0s0cHdjcXlDaU1hOEJwMUsvOApKZ2p1NGF0L210VTJQMWpFSDhrQnJZRTlkSGxobERCN0w5N2NLaTlnalB6U21RTGkrL21zR000OGIzb1d1SElRCm9ZWjdURUg5eDN0MTBOempaMTJYdWl1b2trMSt6WTMvZ0UvZWNYajI0bkFZYjArNjJ0RGx3QkhOWmJnT2NtTGsKeVFwVmVUbHV4MC9vVU1hWjBObVRPTHNBZlM4VGxNTWV6bXRrRHdmKzRZb05RWnFROHduS2ZPMFljd04raWVvYwpJL0pwNERtZXRnaTBET3NRSnRZYWRqcFFRbzFCQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTMEdXWnd2RGhPSmJtTzljKzM0Y0RzTG9vbFNEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ0VZY1V0b29zVgpCUEoxVXRkQm9PM0MwQVZ0MWY3WmhONHdwVDhWSHlWdGR1bk42MzFYUTNUN1lRV2tHbXRJUVc5T21MeHkxc2hTCk5KSDhLckpYUnZsQUJKTjFpRlJ5aWlqY0VHbmZzNFluNG1CT2gyOFJHZlJmUW1YWjJ5RzNtS2dSL3FtYUU1cmUKYU5HTmRzbUY3aGRVbnBIdkpyWGplT21lR1pnQUNkTXJqMys3L0VrbHVrakRTMU9WZmxBdnJydUFqSlRLSWVyUgpYVndnVmUybVJlT1l3c054YW54c1N4UHJEQUJnTHh5dDBmZXlmTlg1NVNJd0ozUXhscGRFanVnUmFvTHdWUDJFClNQTTVhdXRUQjh6VTk2MjZ0bFVjdkE3UzJ5RVJ1dy9rY29DNUtYY1ljL3AvcGVCOXpaVE8zcUtZVDhhdHZHQ2YKcnZac2hwVHlNV0xWCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"

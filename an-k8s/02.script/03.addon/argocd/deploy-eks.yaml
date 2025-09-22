@@ -101,20 +101,20 @@ jobs:
       - name: Checkout kustomize repository
         uses: actions/checkout@v2
         with:
-          repository: the-medium/kstadium-k8s
+          repository: the-medium/example-project-k8s
           ref: develop
           token: ${{ secrets.MANIFEST_TOKEN }}
-          path: kstadium-k8s
+          path: example-project-k8s
 
       - name: Update Kubernetes resources
         run: |
-          cd kstadium-k8s/manifest/${{ needs.push-image.outputs.repository_name }}/overlays/${{ needs.push-image.outputs.branch_name }}
+          cd example-project-k8s/manifest/${{ needs.push-image.outputs.repository_name }}/overlays/${{ needs.push-image.outputs.branch_name }}
           kustomize edit set image Set_Kustomize=${{ needs.push-image.outputs.account_id }}.dkr.ecr.${{ needs.push-image.outputs.region_name }}.amazonaws.com/${{ needs.push-image.outputs.branch_name }}/${{ needs.push-image.outputs.repository_name }}:${{ needs.push-image.outputs.sha_short }}
           
 
       - name: Commit files
         run: |
-          cd kstadium-k8s
+          cd example-project-k8s
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           git commit -am "Update image tag"

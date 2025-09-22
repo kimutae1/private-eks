@@ -1,6 +1,6 @@
 Env: stg 
-OldTag: kstadium-bridge-web-202401191532 
-NewTag: kstadium-bridge-web-202401261820 
+OldTag: example-project-bridge-web-202401191532 
+NewTag: example-project-bridge-web-202401261820 
 AppType: FrontEnd
 Domain: Kstadium
 ARecord: bridge

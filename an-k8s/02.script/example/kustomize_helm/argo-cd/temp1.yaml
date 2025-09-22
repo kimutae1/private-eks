@@ -19249,7 +19249,7 @@ kind: Secret
 metadata:
   name: namespace-secret
 stringData:
-  id: kstadium
+  id: example-project
   password: devops
 type: Opaque
 ---
@@ -20818,11 +20818,11 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:123456789012:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
     alb.ingress.kubernetes.io/group.name: tg-dev--argo
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/load-balancer-name: alb-dev-kstadium-argo
+    alb.ingress.kubernetes.io/load-balancer-name: alb-dev-example-project-argo
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/target-type: ip
-    external-dns.alpha.kubernetes.io/hostname: argo.dev.kstadium.io
+    external-dns.alpha.kubernetes.io/hostname: argo.dev.example-project.io
     kubernetes.io/ingress.class: alb
   labels:
     app.kubernetes.io/component: server

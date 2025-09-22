@@ -7,7 +7,7 @@ auth:
 
 ingress:
   enabled: true
-  hostname: auth.dev.kstadium.io
+  hostname: auth.dev.example-project.io
   path: /*
   servicePort: https
   annotations:
@@ -27,7 +27,7 @@ tls:
 postgresql:
   enabled: false # 외부 db와 연결할거면 false (true 설정 시 비밀번호도 설정 필요)
 externalDatabase:
-  host: rds-pgsql-dev-kstadium-main.cluster-cysgddip6ijs.ap-northeast-2.rds.amazonaws.com # postgres DB host
+  host: rds-pgsql-dev-example-project-main.cluster-cysgddip6ijs.ap-northeast-2.rds.amazonaws.com # postgres DB host
   port: 5432
   user: dbadmin # DB user
   database: postgres # DB database

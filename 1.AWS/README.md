@@ -75,8 +75,8 @@ com.amazonaws.ap-northeast-2.ssm
 for svc_name in  ${service_names[@]}  
 do
 aws ec2 create-vpc-endpoint  \
---subnet-ids subnet-01e8f39bc63ff2723  subnet-0947044bb30ff3138 \
---vpc-id vpc-03f938d63b3dc31d2  \
+--subnet-ids subnet-<private-subnet-b>  subnet-<private-subnet-a> \
+--vpc-id vpc-<vpc-id>  \
 --service-name  ${svc_name}  \
 --vpc-endpoint-type Interface  \
 --security-group-id sg-0da577e13607dfa16  

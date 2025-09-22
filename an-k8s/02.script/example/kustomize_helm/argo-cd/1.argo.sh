@@ -35,7 +35,7 @@ server:
       alb.ingress.kubernetes.io/group.name: tg-${env}-${service_znoe}-argo
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
-      external-dns.alpha.kubernetes.io/hostname: argo.dev.kstadium.io
+      external-dns.alpha.kubernetes.io/hostname: argo.dev.example-project.io
 
 
       # SSL Settings
@@ -43,10 +43,10 @@ server:
       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:911781391110:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
       alb.ingress.kubernetes.io/ssl-redirect: '443'
       alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
-      external-dns.alpha.kubernetes.io/hostname: argo.dev.kstadium.io
+      external-dns.alpha.kubernetes.io/hostname: argo.dev.example-project.io
      labels: {}
      ingressClassName: ""
-     hosts: { argo.dev.kstadium.io }
+     hosts: { argo.dev.example-project.io }
      #https: true
 EOF
 
@@ -67,7 +67,7 @@ metadata:
   name: namespace-secret
 type: Opaque
 stringData:
-  id: kstadium
+  id: example-project
   password: devops11
 EOF
 

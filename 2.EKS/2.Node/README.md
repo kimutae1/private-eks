@@ -19,10 +19,10 @@ Error: error describing cluster stack: no eksctl-managed CloudFormation stacks f
 2024-08-07 09:00:38 [ℹ]  no tasks
 2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
-2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
+2024-08-07 09:00:38 [ℹ]  node "<instance-id-1>.ap-northeast-2.compute.internal" is ready
 2024-08-07 09:00:38 [ℹ]  waiting for at least 1 node(s) to become ready in "nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
-2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.intern al" is ready
+2024-08-07 09:00:38 [ℹ]  node "<instance-id-1>.ap-northeast-2.compute.intern al" is ready
 2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom "
 2024-08-07 09:00:38 [ℹ]  checking security group configuration for all nodegroups
 2024-08-07 09:00:38 [ℹ]  all nodegroups have up-to-date cloudformation templates
@@ -103,15 +103,15 @@ data:
       - system:bootstrappers
       - system:nodes
       - system:masters
-      userarn: arn:aws:iam::123456789012:user/dongjoon.kim@bespinglobal.com
-      username: dongjoon.kim@bespinglobal.com
+      userarn: arn:aws:iam::123456789012:user/<user-email>
+      username: <user-email>
 ```
 
-동준님 계정으로 컨택스트 스왑 하고 pod를 조회 해보자
+<user-name> 계정으로 컨택스트 스왑 하고 pod를 조회 해보자
 
 ```
-k config use-context dongjoon.kim@bespinglobal.com@stg-custom.ap-northeast-2.eksctl.io
-Switched to context "dongjoon.kim@bespinglobal.com@stg-custom.ap-northeast-2.eksctl.io".
+k config use-context <user-email>@stg-custom.ap-northeast-2.eksctl.io
+Switched to context "<user-email>@stg-custom.ap-northeast-2.eksctl.io".
 ❯ k get po -A
 NAMESPACE     NAME                           READY   STATUS    RESTARTS   AGE
 kube-system   aws-node-gmfrp                 2/2     Running   0          4d17h
@@ -133,11 +133,11 @@ c6g로 만들었다가 이것도 만들수 있는 종류는 한정적이라는 �
 https://eksctl.io/usage/arm-support/
 ```
 2024-08-14 06:09:54 [✖]  could not select subnets from subnet IDs (allSubnets=v1alpha5.AZSubnet
-Mapping{"ap-northeast-2a":v1alpha5.AZSubnetSpec{ID:"subnet-0947044bb30ff3138", AZ:"ap-northeast
+Mapping{"ap-northeast-2a":v1alpha5.AZSubnetSpec{ID:"subnet-<private-subnet-a>", AZ:"ap-northeast
 -2a", CIDR:(*ipnet.IPNet)(0xc000e8da70), CIDRIndex:0, OutpostARN:""}, "ap-northeast-2b":v1alpha
-5.AZSubnetSpec{ID:"subnet-01e8f39bc63ff2723", AZ:"ap-northeast-2b", CIDR:(*ipnet.IPNet)(0xc000e
+5.AZSubnetSpec{ID:"subnet-<private-subnet-b>", AZ:"ap-northeast-2b", CIDR:(*ipnet.IPNet)(0xc000e
 8da10), CIDRIndex:0, OutpostARN:""}} localZones=[]string(nil) subnets=[]string{"subnet-0947044b
-b30ff3138", "subnet-01e8f39bc63ff2723"}): failed to select subnet subnet-0947044bb30ff3138: can
+b30ff3138", "subnet-<private-subnet-b>"}): failed to select subnet subnet-<private-subnet-a>: can
 not create nodegroup arm in availability zone ap-northeast-2a as it does not support all requir
 ed instance types
 ```
@@ -167,12 +167,12 @@ be removed in a future release
 2024-08-14 06:15:42 [ℹ]  no tasks
 2024-08-14 06:15:42 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-14 06:15:42 [ℹ]  nodegroup "arm" has 2 node(s)
-2024-08-14 06:15:42 [ℹ]  node "i-02b188b07304431c6.ap-northeast-2.compute.internal" is ready
-2024-08-14 06:15:42 [ℹ]  node "i-0429c332df6891d04.ap-northeast-2.compute.internal" is ready
+2024-08-14 06:15:42 [ℹ]  node "<instance-id-2>.ap-northeast-2.compute.internal" is ready
+2024-08-14 06:15:42 [ℹ]  node "<instance-id-3>.ap-northeast-2.compute.internal" is ready
 2024-08-14 06:15:42 [ℹ]  waiting for at least 2 node(s) to become ready in "arm"
 2024-08-14 06:15:42 [ℹ]  nodegroup "arm" has 2 node(s)
-2024-08-14 06:15:42 [ℹ]  node "i-02b188b07304431c6.ap-northeast-2.compute.internal" is ready
-2024-08-14 06:15:42 [ℹ]  node "i-0429c332df6891d04.ap-northeast-2.compute.internal" is ready
+2024-08-14 06:15:42 [ℹ]  node "<instance-id-2>.ap-northeast-2.compute.internal" is ready
+2024-08-14 06:15:42 [ℹ]  node "<instance-id-3>.ap-northeast-2.compute.internal" is ready
 2024-08-14 06:15:42 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom"
 2024-08-14 06:15:42 [ℹ]  checking security group configuration for all nodegroups
 2024-08-14 06:15:42 [ℹ]  all nodegroups have up-to-date cloudformation templates

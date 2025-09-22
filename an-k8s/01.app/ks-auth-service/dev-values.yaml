@@ -9,4 +9,4 @@ CommonSecretSelect:
 OptionalSecretManagerSelect:
   - Octet
 LbConfig: 
-  HealthCheck: /kstadium/api/v1/auth/client/healthcheck
+  HealthCheck: /example-project/api/v1/auth/client/healthcheck

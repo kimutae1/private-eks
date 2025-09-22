@@ -7,8 +7,8 @@ configs:
     
   repositories:
     # private-repo:
-    #   url: git@github.com:the-medium/kstadium-manifest.git
-    #   name: kstadium-manifest
+    #   url: git@github.com:the-medium/example-project-manifest.git
+    #   name: example-project-manifest
     #   type: git
     #   sshPrivateKey: |
     #     -----BEGIN OPENSSH PRIVATE KEY-----
@@ -51,8 +51,8 @@ configs:
     #     -----END OPENSSH PRIVATE KEY-----
 
     private-repo:
-      url: git@github.com:the-medium/kstadium-k8s.git
-      name: kstadium-k8s
+      url: git@github.com:the-medium/example-project-k8s.git
+      name: example-project-k8s
       type: git
       sshPrivateKey: |
         -----BEGIN OPENSSH PRIVATE KEY-----
@@ -94,13 +94,13 @@ configs:
         P6KiOv/zxpZ6QFAAAAB2xpb0BMaW8BAgM=
         -----END OPENSSH PRIVATE KEY-----
   clusterCredentials:
-      - name: dev-kstadium-service
+      - name: dev-example-project-service
         server: https://B145163611BFA15683F20D98C54237C2.gr7.ap-northeast-2.eks.amazonaws.com
         labels:
           argocd.argoproj.io/secret-type: cluster
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-service
+            clusterName: dev-example-project-service
             roleARN: arn:aws:iam::123456789012:role/EKS-SA-Role
           tlsClientConfig:
             insecure: false # TLS 인증x
@@ -108,11 +108,11 @@ configs:
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJTWVRd3ZPMFphaU13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1qY3dNVFUyTkRKYUZ3MHpNekE1TWpRd01UVTJOREphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURBU0NRZ2dHbnhSTnBlTnVIaVI3S0QxZ09WVXRpL3pwTVIrbUxybTArK1hBQ3hmMHZEQkJmSWMrUUwKVC81aXBpUHZyNXFDWjhjZTA1L1FQSFlOUlNaU2MxQlBQWlEvUTJySHlPOHJoVU5ISmhDZTMvc1MwWDJyUTA2QgpnM1hCSEp1YXdnMlFuTXpjNEdNdVRLSDRhZlJ1MUpOUW1LcTN3dDlDRG5taHIxVGdLdytvYWVGWTNhcDVUaENsCndiUEFvMHU5dUdBVC9TNmpwckZNVEZtSnhFRGdZQ2h3QjRDUmFIU1VzNnNyU2ZaUTZ2aklDT3R0dmp6SEEvZjEKOU44ZFNHSXc3TDJBdlc5MG5XUHNuSThqV0k5SzR3T3RLYVJFMGlITkpKS1FmZ2hnbFV0Wmg0Q1h3NnJBSXN0bwpwV3A1Y1AwSFBQQ2FnMnhhNHcwU1Uva3V2UWoxQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUZnBrV0Y3bUFlM0hxYmsxY3lXWHh3OEdlMG9EQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ3VoUEVOUTAxegpVUEd4OTFOcUNVREZrMHNDUDBtUjJid2hPRzVicEJXQU1UVk1tLyswUDY5VzRKRi9YVnAyYlZza1BPOS91QXdFCkx6a3cyVXhPTVo4TkpyS1NRZ3V3VXFlM1owQmowSXZXRjdYbEZHOHkzVVF0cnBxVGFhTVZRQjVqN2t2OFFyR3UKUlRySGdSeDBoaTZrZk5VdWgxQUtzSTh3NHo0SzNFNG10d1NnR1ZxbDkvb0xYd01ISnJmbEhLemxjQ0UzNE8yNwp2VWlKZmdoTjV2emFiMk9wc0IrRTBSdDYrUUs4OU5DaW0vY2lQb1Z3VlYraXVGci9LdmR5dkE1Mi9zVXJiQWEvCmFPeVZ2U1FFdzF3WSttS0xRaFN5dXhqQXJLeDR3TWJzaTRtV2dzeFpEbGZuV24rMTcvM3VaejhxNHJnRW1hSDQKdkpPa2VFY08vTWxRCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
 
 
-      - name: dev-kstadium-gndchain
+      - name: dev-example-project-gndchain
         server: https://FFE2AB655DE16A66CB30F0925945A580.gr7.ap-northeast-2.eks.amazonaws.com
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-gndchain
+            clusterName: dev-example-project-gndchain
             roleARN: arn:aws:iam::123456789012:role/EKS-SA-Role
           tlsClientConfig:
             insecure: false # TLS 인증x
@@ -128,8 +128,8 @@ server:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: alb
-      alb.ingress.kubernetes.io/load-balancer-name: alb-dev-kstadium-managed-argo
-      alb.ingress.kubernetes.io/group.name: tg-dev-kstadium-managed-argo
+      alb.ingress.kubernetes.io/load-balancer-name: alb-dev-example-project-managed-argo
+      alb.ingress.kubernetes.io/group.name: tg-dev-example-project-managed-argo
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:123456789012:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
       alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
@@ -139,7 +139,7 @@ server:
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
       alb.ingress.kubernetes.io/ssl-redirect: '443'
       alb.ingress.kubernetes.io/actions.ssl-redirect: {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
-      external-dns.alpha.kubernetes.io/hostname: managed-argo.dev.kstadium.io
+      external-dns.alpha.kubernetes.io/hostname: managed-argo.dev.example-project.io
     paths:
       - /
     pathType: Prefix

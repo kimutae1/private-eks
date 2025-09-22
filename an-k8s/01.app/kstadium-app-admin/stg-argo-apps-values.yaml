@@ -1,5 +1,5 @@
 applications: 
-- name: kstadium-app-admin
+- name: example-project-app-admin
   namespace: managed
   additionalLabels: {}
   additionalAnnotations: {}
@@ -7,15 +7,15 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:kstadium/kstadium-k8s.git
+    repoURL: git@github.com:example-project/example-project-k8s.git
     targetRevision: develop
     path: 01.app/common
     helm:
       valueFiles:
         - common-values.yaml
-        - ../kstadium-app-admin/stg-values.yaml
+        - ../example-project-app-admin/stg-values.yaml
   destination:
-    name: stg-kstadium-service
+    name: stg-example-project-service
     namespace: default
   syncPolicy:
     automated:

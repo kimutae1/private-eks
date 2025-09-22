@@ -7,7 +7,7 @@ ARecord: push-api
 CommonSecretSelect: 
   - Push-Service
 LbConfig: 
-  HealthCheck: /kstadium/api/v1/notification/fcm/healthcheck
+  HealthCheck: /example-project/api/v1/notification/fcm/healthcheck
   ListenPorts:
     - protocol: HTTP
       port: 80

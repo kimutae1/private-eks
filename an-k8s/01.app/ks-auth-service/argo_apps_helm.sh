@@ -24,7 +24,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:kstadium/kstadium-k8s.git
+    repoURL: git@github.com:example-project/example-project-k8s.git
     targetRevision: develop
     path: 01.app/common
     helm:
@@ -32,7 +32,7 @@ applications:
         - common-values.yaml
         - ../$app/$env-values.yaml
   destination:
-    name: $env-kstadium-$cluster
+    name: $env-example-project-$cluster
     namespace: default
   syncPolicy:
     automated:

@@ -20,7 +20,7 @@ server:
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
       alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
     hosts:
-      - lio-argo.dev.kstadium.io
+      - lio-argo.dev.example-project.io
     paths:
       - /
     pathType: Prefix

@@ -5,7 +5,7 @@ namespace: base-namespace
 commonLabels:
   app: base
 commonAnnotations:
-  company: kstadium
+  company: example-project
 
 
 resources:

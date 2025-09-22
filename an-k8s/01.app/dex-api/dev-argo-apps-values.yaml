@@ -7,7 +7,7 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:kstadium/kstadium-k8s.git
+    repoURL: git@github.com:example-project/example-project-k8s.git
     targetRevision: develop
     path: 01.app/common
     helm:
@@ -15,7 +15,7 @@ applications:
         - common-values.yaml
         - ../dex-api/dev-values.yaml
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:

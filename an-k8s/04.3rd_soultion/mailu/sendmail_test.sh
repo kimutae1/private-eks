@@ -1,4 +1,4 @@
-#export SMTP_SERVER="mail.dev.kstadium.io"
+#export SMTP_SERVER="mail.dev.example-project.io"
 #export SMTP_PORT="587"
 #export SENDER_EMAIL="sender@{SMTP_SERVER}"
 #export RECIPIENT_EMAIL="recipient@{SMTP_SERVER}"
@@ -16,13 +16,13 @@
 
 
 #export SMTPServer=localhost
-export SMTPDomain=dev.kstadium.io
+export SMTPDomain=dev.example-project.io
 export SMTPServer=email-smtp.ap-northeast-2.amazonaws.com
 export SMTPPort=587
 export SMTPUsername=`echo -n "AKIA5ISTH5MDPIX6K4NZ" | openssl enc -base64`
 export SMTPPassword=`echo -n "BB3rjsTFIbIAZ31bFzZbWaJmdkz48d2W9ahcEWesJImo" | openssl enc -base64`
 export MAILFrom=noreply@${SMTPDomain}
-export MAILTo=dorian.kim@mail.dev.kstadium.io
+export MAILTo=dorian.kim@mail.dev.example-project.io
 
 
 

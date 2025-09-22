@@ -7,15 +7,15 @@ metadata:
       cert-manager.io/cluster-issuer: "my-issuer"
 
 vpc:
-  id: vpc-03f938d63b3dc31d2
+  id: vpc-<vpc-id>
   cidr: 10.0.0.0/16
   securityGroup: sg-0da577e13607dfa16
   subnets:
     private:
       ap-northeast-2a:
-         id: subnet-0947044bb30ff3138
+         id: subnet-<private-subnet-a>
       ap-northeast-2b:
-         id: subnet-01e8f39bc63ff2723
+         id: subnet-<private-subnet-b>
 
 
 managedNodeGroups:
@@ -25,8 +25,8 @@ managedNodeGroups:
     volumeSize: 30  # 클러스터 워커 노드의 EBS 용량 (단위: GiB)
     privateNetworking: true
     subnets:
-      -  subnet-0947044bb30ff3138
-      -  subnet-01e8f39bc63ff2723
+      -  subnet-<private-subnet-a>
+      -  subnet-<private-subnet-b>
     ssh:
       enableSsm: true
     labels:

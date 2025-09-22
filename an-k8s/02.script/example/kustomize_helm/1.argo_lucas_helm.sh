@@ -8,8 +8,8 @@ configs:
     
   repositories:
     private-repo:
-      url: git@github.com:the-medium/kstadium-manifest.git
-      name: kstadium-manifest
+      url: git@github.com:the-medium/example-project-manifest.git
+      name: example-project-manifest
       type: git
       sshPrivateKey: |
         -----BEGIN OPENSSH PRIVATE KEY-----
@@ -56,13 +56,13 @@ EOF
 
 cat << EOF >> argo-values.yaml
   clusterCredentials:
-      - name: dev-kstadium-service
+      - name: dev-example-project-service
         server: https://BF3D156AFFFAE8BD64FDFDEAE73CEC94.gr7.ap-northeast-2.eks.amazonaws.com
         labels:
           argocd.argoproj.io/secret-type: cluster
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-service
+            clusterName: dev-example-project-service
             roleARN: $eks_sa_role
           tlsClientConfig:
             insecure: false # TLS 인증x
@@ -70,11 +70,11 @@ cat << EOF >> argo-values.yaml
             caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJQmtsbGZ2UjhCemt3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1UVXdOek00TVRkYUZ3MHpNekE1TVRJd056TTRNVGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURLbXl3Q0EzRzZEbjJFV2tqZCtiNytjbG1GbFZ3VDB4a3dKemNoaFlweExVSkthM3M5ZVF4bHEvTTUKR25Sc09GZElQS0dHNGlUeStRUjNhcGZMcVI2MEpJY2tFUnB2eW4vM3UyM3dQRmNUUnBmY0dleEo2TVNVZTZEeQpQakgrdTV0WTZOS2pvNkJiUExkNUE0UGt1Z0NaRnlJdkp4cUYzME9iM2s3NGl6a2NQSHNzYjVOWFhxU0FlRU1SCk1yaGZXM21Zc3czVkN2aGc0ako3bE53b1BuWE1uM2N4YzR6Ump0dExMdklUdnBOR2FzZ3pvdzZIK2FWUHhhYk4KTm5zSk5mcFBTRjhtVHRoYWd0WVY1NWVLVzMxWDB0RmowTzNPRDU0dkRUeXBTRytPMU5XNm0rb0VpZzJXZyt6ZQpjVEl4VmZlc1diMWpkeGxXSWVGZ2xqTXlsVE9wQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRMlZFSlF5b084alN6Mlc3MFlrZEZwZmZZUElEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWM3NXJ4QkdONgpkRGRLMVVOMFBpbWkzSCt1N2tpN0FCMGxEYkFFYWR0V1ZheW9UNVJOUjZ6VHAyM0p6L2o2ODRYSFBuR3JaODZaClUvUThveVhScm4yVHdiTExqS3BVSTg1VjdJd0lWYzRlMXFvL25sNXRycTY2aXlZTXZaR05sL1Ftc29Bb1FVVHUKT0ZoeHB0eTMxY1FSb1pZOU5SZUw1YmlpaEJQRitQYU5BVUxOdTRUaElKZDFrcWswc1B2emQrL3JvUElNNkdVMApXQnAvOEhCbmNDeUlDYzcyQ3lWeVR4Vmk2NDZZNlUrUjgwZkRjUkcyMEpmR3laNnUzMmNzWkhvZEo3K2xIeWdzCkZYb3dXTnd5UnQ2VzhaUCtCbUtQa0VWODRBUjZIYVN1YmhBcjlCZWRWZHJ4Q2xnRnI1NWhHNjdUVFRqSTAyUnQKQ3dJNG5yWTB2MzNmCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
 
 
-      - name: dev-kstadium-gndchain
+      - name: dev-example-project-gndchain
         server: https://5F150764B67F13F1DC3714068BF391A9.gr7.ap-northeast-2.eks.amazonaws.com
         config:
           awsAuthConfig:
-            clusterName: dev-kstadium-gndchain
+            clusterName: dev-example-project-gndchain
             roleARN: $eks_sa_role
           tlsClientConfig:
             insecure: false # TLS 인증x

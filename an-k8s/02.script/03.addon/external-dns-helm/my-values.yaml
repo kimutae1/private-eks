@@ -1,7 +1,7 @@
 serviceAccount:
   create: false
   annotations: {
-    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/dev-kstadium-service-eks-all-role-sa
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/dev-example-project-service-eks-all-role-sa
     }
   name: "eks-all-role-sa"
 
@@ -12,5 +12,5 @@ sources:
 policy: upsert-only
 registry: txt
 txtOwnerId: "Z03689522Y6K96S9DKQ8U"
-domainFilters: [dev.kstadium.io]
+domainFilters: [dev.example-project.io]
 provider: aws

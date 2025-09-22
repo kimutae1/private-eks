@@ -1,6 +1,6 @@
 cat << EOF > argo-apps-values.yaml
 applications: 
-- name: dev-kstadium-service
+- name: dev-example-project-service
   namespace: default
   additionalLabels: {}
   additionalAnnotations: {}
@@ -8,11 +8,11 @@ applications:
   - resources-finalizer.argocd.argoproj.io
   project: default
   source:
-    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    repoURL: git@github.com:the-medium/example-project-k8s.git
     targetRevision: develop 
     path: manifest/test-app-admin/overlays/develop
   destination:
-    name: dev-kstadium-service
+    name: dev-example-project-service
     namespace: default
   syncPolicy:
     automated:

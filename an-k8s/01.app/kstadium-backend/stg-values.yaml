@@ -1,6 +1,6 @@
 Env: stg 
-OldTag: kstadium-backend-202401251941 
-NewTag: kstadium-backend-202401291123 
+OldTag: example-project-backend-202401251941 
+NewTag: example-project-backend-202401291123 
 AppType: BackEnd
 Domain: Kstadium
 ARecord: app
@@ -40,7 +40,7 @@ CommonSecretSelect:
 OptionalSecretManagerSelect:
   - Octet
 LbConfig: 
-  HealthCheck: /kstadium/api/healthcheck
+  HealthCheck: /example-project/api/healthcheck
   ListenPorts:
     - protocol: HTTP
       port: 80

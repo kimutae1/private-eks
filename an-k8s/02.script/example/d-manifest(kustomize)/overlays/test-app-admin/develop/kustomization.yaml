@@ -15,7 +15,7 @@ patches:
 commonLabels:
  app: app-admin
 commonAnnotations:
- svc: kstadium
+ svc: example-project
 
 images:
 #- name: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin
