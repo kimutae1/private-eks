@@ -8,7 +8,7 @@ portal 같은 경우 크게 keyclock을 base로 하며 api / admin 등으로 구
 - service 
 - ingress 
 
-alertnow 같은 경우 deployment는 argo-rollout 으로 대체 되었고
+custom 같은 경우 deployment는 argo-rollout 으로 대체 되었고
 
 service나  ingress  설정은 helm chart로 구성 되어 있어 기본기를 알기가 어렵다.
 
@@ -16,13 +16,13 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
 
 일단 ecs 환경과 최대한 유사하게 구성 하기 위하여 ecs 내부에 있는  task definition 을 가져오자
 
-- stg-an-kbds-portal-sso-web:6 
+- stg-an-custom-portal-sso-web:6 
 
 <details> 
 
 ```json
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:381492026218:task-definition/stg-an-kbds-portal-sso-web:6",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:381492026218:task-definition/stg-an-custom-portal-sso-web:6",
     "containerDefinitions": [
         {
             "name": "portal-sso-web",
@@ -62,7 +62,7 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/stg-an-kbds-portal-sso-web",
+                    "awslogs-group": "/ecs/stg-an-custom-portal-sso-web",
                     "awslogs-create-group": "true",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
@@ -72,7 +72,7 @@ portal 은 기본 yaml로만 최대한 구성 해보도록 한다.
             "systemControls": []
         }
     ],
-    "family": "stg-an-kbds-portal-sso-web",
+    "family": "stg-an-custom-portal-sso-web",
     "taskRoleArn": "arn:aws:iam::381492026218:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::381492026218:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",

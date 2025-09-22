@@ -46,7 +46,7 @@ role을 추가한다
 
 user와 role을 추가 하였다면 cluster 에 접속을 해보자
 ``` 
-export Cluster_Name=stg-alertnow
+export Cluster_Name=stg-custom
 eksctl utils write-kubeconfig --cluster=${Cluster_Name}
 
 2024-08-05 17:40:06 [✔]  saved kubeconfig as "/home/kth/.kube/config"

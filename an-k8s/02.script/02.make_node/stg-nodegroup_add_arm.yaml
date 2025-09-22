@@ -1,7 +1,7 @@
 kind: ClusterConfig
 apiVersion: eksctl.io/v1alpha5
 metadata:
-    name: stg-alertnow
+    name: stg-custom
     region: ap-northeast-2
     annotations:
       cert-manager.io/cluster-issuer: "my-issuer"

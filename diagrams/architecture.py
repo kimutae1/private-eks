@@ -65,8 +65,8 @@ with Diagram("privateEKS_custom_Architecture",show=False, direction="LR"):  # ì 
         prds >> AuroraInstance("portal")
 
       with Cluster("RDS Cluster[privateEKS]"): 
-        ards= RDS("alertnow")
-        ards0= RDSInstance("alertnow0")
+        ards= RDS("custom")
+        ards0= RDSInstance("custom0")
 
       ards >> ards0
     
@@ -110,8 +110,8 @@ with Diagram("privateEKS_custom_Architecture",show=False, direction="LR"):  # ì 
 #
 #
 #    with Cluster("etc"):
-#       [Pod("alertnow-webapp-v2"),
-#        Pod("alertnow-notification-landing"),
+#       [Pod("custom-webapp-v2"),
+#        Pod("custom-notification-landing"),
 #        Pod("spring-common-ext"),
 #        Pod("spring-mybatis-ext"),
 #        Pod("spring-web-ext")]

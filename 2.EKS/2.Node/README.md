@@ -1,29 +1,29 @@
 ## Node 추가
 
 ```
-❯ ./02.script/02.make_node/alertnow_nodegroup_add.sh
-Error: error describing cluster stack: no eksctl-managed CloudFormation stacks found for "stg-alertnow"
+❯ ./02.script/02.make_node/custom_nodegroup_add.sh
+Error: error describing cluster stack: no eksctl-managed CloudFormation stacks found for "stg-custom"
 2024-08-07 08:58:01 [ℹ]  will use version 1.30 for new nodegroup(s) based on control plane version
 2024-08-07 08:58:01 [!]  SSM is now enabled by default; `ssh.enableSSM` is deprecated and will be removed in a future release
-2024-08-07 08:58:01 [!]  no eksctl-managed CloudFormation stacks found for "stg-alertnow", will attempt to create nodegroup(s) on non eksctl-managed cluster
+2024-08-07 08:58:01 [!]  no eksctl-managed CloudFormation stacks found for "stg-custom", will attempt to create nodegroup(s) on non eksctl-managed cluster
 2024-08-07 08:58:02 [ℹ]  nodegroup "nodegroup-m5-xlarge" will use "" [AmazonLinux2023/1.30]
 2024-08-07 08:58:02 [ℹ]  1 nodegroup (nodegroup-m5-xlarge) was included (based on the include/exclude rules)
-2024-08-07 08:58:02 [ℹ]  will create a CloudFormation stack for each of 1 managed nodegroups in cluster "stg-alertnow"
+2024-08-07 08:58:02 [ℹ]  will create a CloudFormation stack for each of 1 managed nodegroups in cluster "stg-custom"
 2024-08-07 08:58:02 [ℹ]  1 task: { 1 task: { 1 task: { create managed nodegroup nodegroup-m5-xlarge" } } }
-2024-08-07 08:58:02 [ℹ]  building managed nodegroup stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:03 [ℹ]  deploying stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:03 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:59:08 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 09:00:38 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:02 [ℹ]  building managed nodegroup stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:03 [ℹ]  deploying stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:03 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:59:08 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 09:00:38 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  no tasks
-2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-alertnow"
+2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
 2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
 2024-08-07 09:00:38 [ℹ]  waiting for at least 1 node(s) to become ready in "nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
 2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.intern al" is ready
-2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-alertnow "
+2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom "
 2024-08-07 09:00:38 [ℹ]  checking security group configuration for all nodegroups
 2024-08-07 09:00:38 [ℹ]  all nodegroups have up-to-date cloudformation templates
 ```
@@ -110,8 +110,8 @@ data:
 동준님 계정으로 컨택스트 스왑 하고 pod를 조회 해보자
 
 ```
-k config use-context dongjoon.kim@bespinglobal.com@stg-alertnow.ap-northeast-2.eksctl.io
-Switched to context "dongjoon.kim@bespinglobal.com@stg-alertnow.ap-northeast-2.eksctl.io".
+k config use-context dongjoon.kim@bespinglobal.com@stg-custom.ap-northeast-2.eksctl.io
+Switched to context "dongjoon.kim@bespinglobal.com@stg-custom.ap-northeast-2.eksctl.io".
 ❯ k get po -A
 NAMESPACE     NAME                           READY   STATUS    RESTARTS   AGE
 kube-system   aws-node-gmfrp                 2/2     Running   0          4d17h
@@ -145,27 +145,27 @@ ed instance types
 m6g로 다시 지정 하고 성공 
 
 ```
-❯ ./alertnow_nodegroup_add_arm.sh
+❯ ./custom_nodegroup_add_arm.sh
 2024-08-14 06:13:11 [ℹ]  will use version 1.30 for new nodegroup(s) based on control plane vers
 ion
 2024-08-14 06:13:11 [!]  SSM is now enabled by default; `ssh.enableSSM` is deprecated and will 
 be removed in a future release
-2024-08-14 06:13:11 [!]  no eksctl-managed CloudFormation stacks found for "stg-alertnow", will
+2024-08-14 06:13:11 [!]  no eksctl-managed CloudFormation stacks found for "stg-custom", will
  attempt to create nodegroup(s) on non eksctl-managed cluster
 2024-08-14 06:13:12 [ℹ]  nodegroup "arm" will use "" [AmazonLinux2023/1.30]
 2024-08-14 06:13:12 [ℹ]  2 existing nodegroup(s) (ng-arm,nodegroup-m5-xlarge) will be excluded
 2024-08-14 06:13:12 [ℹ]  1 nodegroup (arm) was included (based on the include/exclude rules)
 2024-08-14 06:13:12 [ℹ]  will create a CloudFormation stack for each of 1 managed nodegroups in
- cluster "stg-alertnow"
+ cluster "stg-custom"
 2024-08-14 06:13:12 [ℹ]  1 task: { 1 task: { 1 task: { create managed nodegroup "arm" } } }
-2024-08-14 06:13:12 [ℹ]  building managed nodegroup stack "eksctl-stg-alertnow-nodegroup-arm"
-2024-08-14 06:13:12 [ℹ]  deploying stack "eksctl-stg-alertnow-nodegroup-arm"
-2024-08-14 06:13:12 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-arm"
-2024-08-14 06:13:42 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-arm"
-2024-08-14 06:14:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-arm"
-2024-08-14 06:15:42 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-arm"
+2024-08-14 06:13:12 [ℹ]  building managed nodegroup stack "eksctl-stg-custom-nodegroup-arm"
+2024-08-14 06:13:12 [ℹ]  deploying stack "eksctl-stg-custom-nodegroup-arm"
+2024-08-14 06:13:12 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-arm"
+2024-08-14 06:13:42 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-arm"
+2024-08-14 06:14:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-arm"
+2024-08-14 06:15:42 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-arm"
 2024-08-14 06:15:42 [ℹ]  no tasks
-2024-08-14 06:15:42 [✔]  created 0 nodegroup(s) in cluster "stg-alertnow"
+2024-08-14 06:15:42 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-14 06:15:42 [ℹ]  nodegroup "arm" has 2 node(s)
 2024-08-14 06:15:42 [ℹ]  node "i-02b188b07304431c6.ap-northeast-2.compute.internal" is ready
 2024-08-14 06:15:42 [ℹ]  node "i-0429c332df6891d04.ap-northeast-2.compute.internal" is ready
@@ -173,7 +173,7 @@ be removed in a future release
 2024-08-14 06:15:42 [ℹ]  nodegroup "arm" has 2 node(s)
 2024-08-14 06:15:42 [ℹ]  node "i-02b188b07304431c6.ap-northeast-2.compute.internal" is ready
 2024-08-14 06:15:42 [ℹ]  node "i-0429c332df6891d04.ap-northeast-2.compute.internal" is ready
-2024-08-14 06:15:42 [✔]  created 1 managed nodegroup(s) in cluster "stg-alertnow"
+2024-08-14 06:15:42 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom"
 2024-08-14 06:15:42 [ℹ]  checking security group configuration for all nodegroups
 2024-08-14 06:15:42 [ℹ]  all nodegroups have up-to-date cloudformation templates
 ```
@@ -182,6 +182,6 @@ be removed in a future release
 ```
 ❯ eksctl get nodegroup --cluster $cluster_name
 CLUSTER         NODEGROUP               STATUS  CREATED                 MIN SIZE        MAX SIZE        DESIRE D CAPACITY      INSTANCE TYPE   IMAGE ID                ASG NAME                                             TYPE
-stg-alertnow    arm                     ACTIVE  2024-08-14T06:13:21Z    2               2               2    m 6g.large        AL2023_ARM_64_STANDARD  eks-arm-ccc8a7c2-775c-0635-7e99-1cfc3aecae4a                    managed
-stg-alertnow    nodegroup-m5-xlarge     ACTIVE  2024-08-07T08:58:11Z    1               1               1    m 5.xlarge        AL2023_x86_64_STANDARD  eks-nodegroup-m5-xlarge-e2c89607-aae3-d82c-b5c9-98f4333ed1b8    managed
+stg-custom    arm                     ACTIVE  2024-08-14T06:13:21Z    2               2               2    m 6g.large        AL2023_ARM_64_STANDARD  eks-arm-ccc8a7c2-775c-0635-7e99-1cfc3aecae4a                    managed
+stg-custom    nodegroup-m5-xlarge     ACTIVE  2024-08-07T08:58:11Z    1               1               1    m 5.xlarge        AL2023_x86_64_STANDARD  eks-nodegroup-m5-xlarge-e2c89607-aae3-d82c-b5c9-98f4333ed1b8    managed
 ```

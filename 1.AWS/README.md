@@ -38,7 +38,7 @@ com.amazonaws.ap-northeast-2.ssm
 ```
 
 일괄 설치 스크립트는 다음과  같다/
-alertnow-project/scripts/vpc_endpoint_mng.sh
+custom-project/scripts/vpc_endpoint_mng.sh
 
 <details>
 

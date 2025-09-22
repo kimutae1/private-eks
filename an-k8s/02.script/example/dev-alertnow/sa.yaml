@@ -174,16 +174,16 @@ items:
   kind: ServiceAccount
   metadata:
     annotations:
-      meta.helm.sh/release-name: kbds-jenkins
+      meta.helm.sh/release-name: custom-jenkins
       meta.helm.sh/release-namespace: default
     creationTimestamp: "2024-06-18T00:56:32Z"
     labels:
       app.kubernetes.io/component: jenkins-controller
-      app.kubernetes.io/instance: kbds-jenkins
+      app.kubernetes.io/instance: custom-jenkins
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: jenkins
       helm.sh/chart: jenkins-5.2.2
-    name: kbds-jenkins
+    name: custom-jenkins
     namespace: default
     resourceVersion: "9136849"
     uid: 569b7493-79d6-4cef-b471-bbad9a330846

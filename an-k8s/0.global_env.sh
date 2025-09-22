@@ -8,9 +8,9 @@ export account_id=$(aws sts get-caller-identity | jq -r '.Account')
 export K8S_HOME=$(pwd)
 export YAML_HOME=$K8S_HOME/03.service_yaml
 export service_name="service"
-export cluster_name="${env}-alertnow"
+export cluster_name="${env}-custom"
 
-export service_zone=alertnow # Service Zone
+export service_zone=custom # Service Zone
 #export dns_a=argo # A record
 
 # eks-role = cluster create / node-add
@@ -19,7 +19,7 @@ export eks_sa_role=$(aws iam get-role --role-name EKS-SA-Role | jq -r '.Role.Arn
 export devops_role=$(aws iam get-role --role-name devops-role | jq -r '.Role.Arn') # export devops_role
 export region_code=$(aws configure list |grep region |awk '{print $2}') # Region Code
 export vpc_name=$(aws ec2 describe-vpcs  | jq -r '.Vpcs[].Tags[].Value' | grep ${service_zone}) ; # VPC Name
-export domain=alertnowpsdev.com # domain
+export domain=custompsdev.com # domain
 
 
 # CidrBlock, VpcId
@@ -30,7 +30,7 @@ jq -r '.Vpcs[]|{CidrBlock, VpcId}|to_entries|.[]|[.key, .value]|join("=")')
 export $(aws sts get-caller-identity |jq  -r '.|to_entries|.[]|[.key, .value]|join("=")')
 
 
-export Subnets=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=${env}-alertnow-subnet-private*-${region_code}*" )
+export Subnets=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=${env}-custom-subnet-private*-${region_code}*" )
 export private_a="subnet-0947044bb30ff3138"
 export private_b="subnet-01e8f39bc63ff2723"
 

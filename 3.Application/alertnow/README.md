@@ -32,8 +32,8 @@ project: default
 source:
   repoURL: >-
     https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/Argo-CD-Manifests
-  path: alertnow-webapp-v2-charts
-  targetRevision: pipeline_alertnow-webapp-v2_kbds-stg
+  path: custom-webapp-v2-charts
+  targetRevision: pipeline_custom-webapp-v2_kbds-stg
   helm:
     valueFiles:
       - values-stg.yaml

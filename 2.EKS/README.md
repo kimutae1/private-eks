@@ -2,7 +2,7 @@
 ## import variable
 
 환경 변수를 셋팅 해주는 쉘 스크립트이다.  \
-경로 : alertnow-project/docs/an-k8s/0.global_env.sh \
+경로 : custom-project/docs/an-k8s/0.global_env.sh \
 작업을 진행 하는 스크립트에 변수가 셋팅 되어 있다면 변수를 import 하고 시작 하도록 하자 \
 당장 불러오기 어려운 일부 값들은 수동으로 넣었다. \
 작업을 진행 하기 전에 전체 환경변수를 점검 하자  
@@ -21,9 +21,9 @@ export account_id=$(aws sts get-caller-identity | jq -r '.Account')
 export K8S_HOME=$(pwd)
 export YAML_HOME=$K8S_HOME/03.service_yaml
 export service_name="service"
-export cluster_name="${env}-alertnow"
+export cluster_name="${env}-custom"
 
-export service_zone=alertnow # Service Zone
+export service_zone=custom # Service Zone
 #export dns_a=argo # A record
 
 # eks-role = cluster create / node-add
@@ -32,7 +32,7 @@ export eks_sa_role=$(aws iam get-role --role-name EKS-SA-Role | jq -r '.Role.Arn
 export devops_role=$(aws iam get-role --role-name devops-role | jq -r '.Role.Arn') # export devops_role
 export region_code=$(aws configure list |grep region |awk '{print $2}') # Region Code
 export vpc_name=$(aws ec2 describe-vpcs  | jq -r '.Vpcs[].Tags[].Value' | grep ${service_zone}) ; # VPC Name
-export domain=alertnowpsdev.com # domain
+export domain=custompsdev.com # domain
 
 
 # CidrBlock, VpcId
@@ -43,7 +43,7 @@ jq -r '.Vpcs[]|{CidrBlock, VpcId}|to_entries|.[]|[.key, .value]|join("=")')
 export $(aws sts get-caller-identity |jq  -r '.|to_entries|.[]|[.key, .value]|join("=")')
 
 
-export Subnets=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=${env}-alertnow-subnet-private*-${region_code}*" )
+export Subnets=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=${env}-custom-subnet-private*-${region_code}*" )
 echo Subnets |jq -r '.Subnets'
 export private_a="subnet-0947044bb30ff3138"
 export private_b="subnet-01e8f39bc63ff2723"
@@ -82,7 +82,7 @@ vpc_ID=vpc-e74bf58
 
 ## ~/.kube/config 셋팅 
 ```
-eksctl utils write-kubeconfig --cluster=stg-alertnow
+eksctl utils write-kubeconfig --cluster=stg-custom
 ```
 
 
@@ -92,29 +92,29 @@ eksctl utils write-kubeconfig --cluster=stg-alertnow
 <details>
 
 ```
-❯ ./02.script/02.make_node/alertnow_nodegroup_add.sh
-Error: error describing cluster stack: no eksctl-managed CloudFormation stacks found for "stg-alertnow"
+❯ ./02.script/02.make_node/custom_nodegroup_add.sh
+Error: error describing cluster stack: no eksctl-managed CloudFormation stacks found for "stg-custom"
 2024-08-07 08:58:01 [ℹ]  will use version 1.30 for new nodegroup(s) based on control plane version
 2024-08-07 08:58:01 [!]  SSM is now enabled by default; `ssh.enableSSM` is deprecated and will be removed in a future release
-2024-08-07 08:58:01 [!]  no eksctl-managed CloudFormation stacks found for "stg-alertnow", will attempt to create nodegroup(s) on non eksctl-managed cluster
+2024-08-07 08:58:01 [!]  no eksctl-managed CloudFormation stacks found for "stg-custom", will attempt to create nodegroup(s) on non eksctl-managed cluster
 2024-08-07 08:58:02 [ℹ]  nodegroup "nodegroup-m5-xlarge" will use "" [AmazonLinux2023/1.30]
 2024-08-07 08:58:02 [ℹ]  1 nodegroup (nodegroup-m5-xlarge) was included (based on the include/exclude rules)
-2024-08-07 08:58:02 [ℹ]  will create a CloudFormation stack for each of 1 managed nodegroups in cluster "stg-alertnow"
+2024-08-07 08:58:02 [ℹ]  will create a CloudFormation stack for each of 1 managed nodegroups in cluster "stg-custom"
 2024-08-07 08:58:02 [ℹ]  1 task: { 1 task: { 1 task: { create managed nodegroup "nodegroup-m5-xlarge" } } }
-2024-08-07 08:58:02 [ℹ]  building managed nodegroup stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:03 [ℹ]  deploying stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:03 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:58:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 08:59:08 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
-2024-08-07 09:00:38 [ℹ]  waiting for CloudFormation stack "eksctl-stg-alertnow-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:02 [ℹ]  building managed nodegroup stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:03 [ℹ]  deploying stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:03 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:58:33 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 08:59:08 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
+2024-08-07 09:00:38 [ℹ]  waiting for CloudFormation stack "eksctl-stg-custom-nodegroup-nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  no tasks
-2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-alertnow"
+2024-08-07 09:00:38 [✔]  created 0 nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
 2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
 2024-08-07 09:00:38 [ℹ]  waiting for at least 1 node(s) to become ready in "nodegroup-m5-xlarge"
 2024-08-07 09:00:38 [ℹ]  nodegroup "nodegroup-m5-xlarge" has 1 node(s)
 2024-08-07 09:00:38 [ℹ]  node "i-097395c6c5a476d1c.ap-northeast-2.compute.internal" is ready
-2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-alertnow"
+2024-08-07 09:00:38 [✔]  created 1 managed nodegroup(s) in cluster "stg-custom"
 2024-08-07 09:00:38 [ℹ]  checking security group configuration for all nodegroups
 2024-08-07 09:00:38 [ℹ]  all nodegroups have up-to-date cloudformation templates
 
