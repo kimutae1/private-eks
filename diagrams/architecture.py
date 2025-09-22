@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from diagrams import Cluster, Diagram
 from diagrams.aws.compute import ECS, EKS, Lambda
 from diagrams.aws.security import SecretsManager
@@ -13,7 +14,7 @@ from diagrams.k8s.network import Ingress, Service
 
 with Diagram("privateEKS_custom_Architecture",show=False, direction="LR"):  # 전체 다이어그램 방향 설정
     with Cluster("[Route53]"): 
-        r53 = Route53("Route54"),
+        r53 = Route53("Route54")
     with Cluster("[ELB]"): 
      alb = ALB("ALB")
     with Cluster("[AWS EKS]", direction="LR"): 
@@ -48,10 +49,10 @@ with Diagram("privateEKS_custom_Architecture",show=False, direction="LR"):  # �
       with Cluster("Cluster[portal]", direction="LR"): 
          with Cluster("fronend", direction="LR"):
             ssoweb=ECS("sso-web")
-            ssoweb-ECS("adm-web")-ECS("portal-web")
+            ssoweb >> ECS("adm-web") >> ECS("portal-web")
          with Cluster("backend"):
             papi=ECS("portal-api")
-            ECS("adm-api")-ECS("earth-api") - papi
+            ECS("adm-api") >> ECS("earth-api") >> papi
                     #ECS("portal-api")
 
     with Cluster("[MessageQue]"): 
