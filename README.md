@@ -2,7 +2,7 @@
 
 ## diagrams
 
-![1](diagrams/privateeks_custom_architecture)
+![1](diagrams/privateeks_custom_architecture.png)
 
 ## Install
 
