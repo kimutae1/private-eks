@@ -1,0 +1,161 @@
+configs:
+  secret:
+    argocdServerAdminPassword: "$2a$10$sfqdMyMy9VbA4XDy6VMPVu2SrI5cGkNfCUbIbIs6SZEpQWi/2uRtC%"
+    argocdServerAdminPasswordMtime: "2023-08-02T15:04:05Z"
+  cm:
+    kustomize.buildOptions: --enable-helm
+    
+  repositories:
+    # private-repo:
+    #   url: git@github.com:the-medium/kstadium-manifest.git
+    #   name: kstadium-manifest
+    #   type: git
+    #   sshPrivateKey: |
+    #     -----BEGIN OPENSSH PRIVATE KEY-----
+    #     b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+    #     NhAAAAAwEAAQAAAYEA3KzNZeia09SNkYP8Qur5tqbPMCv/rhgSy2PeK2zIVFwtDzyXM+5z
+    #     1ClqWesNTv7t7NLP0WlmZg5Wm/W1dpGaIu/5/X3gqkR59QPtXVAaRigPpSIL2F3J+5NQu3
+    #     zajI/UTxs7KoxaMujAH1rUenV1qHAyl3s2SnIun/etjWBR+5wzUqTlgPf24e6q6nn7C5xM
+    #     Sm55iHx4u5qaRuNcPXkhDNZoX2VX0oThs24zTPOLhRl08Bt/JJPJggMsAC5vIVSr9tJKbV
+    #     Vn6Jf4oTX2gu4u2nzzZUUnC1GSHR0yiWxmorykXGesqL50LeoPfws9uUKYqwLpG2Q9OcAu
+    #     a9+PhHVfSizJEyG7hsF4hHJpMYgHj+c3ljv7D68VwvET0TVmLCSy4dHLcOzGYpCSMzWx7y
+    #     ErT0iydIPsspv8ujipF3BQ0ZyiUqWXjnY+0i4s+Q1nO6HNOtvvV35yS23An1RoUaG1SneG
+    #     s41Vj7qAidqkTwDDgbWYVgd/9ZlaDiDzMqSNQHSzAAAFgEwPOtFMDzrRAAAAB3NzaC1yc2
+    #     EAAAGBANyszWXomtPUjZGD/ELq+bamzzAr/64YEstj3itsyFRcLQ88lzPuc9QpalnrDU7+
+    #     7ezSz9FpZmYOVpv1tXaRmiLv+f194KpEefUD7V1QGkYoD6UiC9hdyfuTULt82oyP1E8bOy
+    #     qMWjLowB9a1Hp1dahwMpd7NkpyLp/3rY1gUfucM1Kk5YD39uHuqup5+wucTEpueYh8eLua
+    #     mkbjXD15IQzWaF9lV9KE4bNuM0zzi4UZdPAbfySTyYIDLAAubyFUq/bSSm1VZ+iX+KE19o
+    #     LuLtp882VFJwtRkh0dMolsZqK8pFxnrKi+dC3qD38LPblCmKsC6RtkPTnALmvfj4R1X0os
+    #     yRMhu4bBeIRyaTGIB4/nN5Y7+w+vFcLxE9E1ZiwksuHRy3DsxmKQkjM1se8hK09IsnSD7L
+    #     Kb/Lo4qRdwUNGcolKll452PtIuLPkNZzuhzTrb71d+ckttwJ9UaFGhtUp3hrONVY+6gIna
+    #     pE8Aw4G1mFYHf/WZWg4g8zKkjUB0swAAAAMBAAEAAAGAP8avO/ccHAFvgrEm7D4Vukx+T5
+    #     k/tRRfBioQMPOo9/yFx0QHHOqaziPECUWt3Hk/0PRiPE7eWbtmG3/JGIHfDp7VXIYPMpZE
+    #     uuOOK6w1U7ZLQznSO49riwoZyH2+eeYtgUlI8bSLcvAiak1pYBTnUq1OacohuCVExVWi8l
+    #     t2hiWwDX/7lijT0JsWCVsEi2f6An7oH+J9UBbP5JHb/CYwP5INqxhSZ9SgmCdOqzwtw+NG
+    #     EQiZV7xgffMluc2xr2vVF7utv2O0nF5QJd4IwMvZCEcpB5t2SRlIx5JI8HPPjtIZmHMLkI
+    #     niaxa15aZ9flr8S8JzDd7dTGEAthTo4N85u84uZeQ+hBJMXVdZ0deC4/xUMac1luTXH2G7
+    #     3EfEKZ0sXhZ6v7gDRUQRgEsNvKowzBowfFsaU/DQ+DBtze+nevxeQ6LYwcCxfKgumfHoyz
+    #     6E7ubpyKxQ0g7hNqBfOFi6HBUCasp/yHE4hkhsRAHpzGsu6CRNQU89p7I3oqm447MNAAAA
+    #     wQCiUU81inAD0AAFC3pgFL61LqwaZb2pTQR9VRqfhIamW3PpiXh90DLWMbu+ZHAMOqvF2k
+    #     UhYAlNCxG0KphOMXstTrgaqe6KQnOHo4mqAVS8/iZp0IT58XYPK+maIDG0vXJzU4dJrgx+
+    #     8KAn6YFzFPg2TY7FR66avlN8r5khhyz5e/AEiSs5wDjuT0LoTuQ1ibi+yAqfN+TqeIiuNJ
+    #     4EPlzpeaHn2IP+YstYXFxbKtoz7VzuCR4E6846a0Sdszb9F80AAADBAOeiYpgfxYbBr63O
+    #     mfDaDNgUzBWjRw8KrfR40Rw91c13tkOzoaqpL7S7DH/fa6dT6OHgpnJkbNU4oK9N1lhG03
+    #     hg7ywcN4f++0GlL9drvAZ7IvMAMIB8qh0Bweiq+hrD5uB/I80ZvuHd3l8srOjAkCFzrA5t
+    #     bLvv5Sg57a8YAkd/yp0X7+HaNu27aRra0SHV1ZnovMwXhci8hfN3JaQn2vpDEzgD7eOT8h
+    #     b1RysQeE5U9UjQsoCf9QPU59s7ndRAxQAAAMEA8+NMD1Xzeix0wPWknP3QP9WixrVfjHpx
+    #     ZXFpW3BSLYbUGQhUHqhIHcXrDFuJc1smjedCPlvqpqjGWOaJbiN35zvcxE99b4UBfjHh4W
+    #     oyveGxy5f7DayJlUj5opY+Hy/bDT1C3l9FhiB9SUkvvUNz4JTgdyoHK56HrAj2uXSAmBqR
+    #     jCpy64AK7cIwPo9Svd0FqM4L0euk+NOHdmTQieqEHhX+JxwwFrKAbQfc39eyfgiOMSg2ox
+    #     POMhVJVZEf2EcXAAAAB2xpb0BMaW8BAgM=
+    #     -----END OPENSSH PRIVATE KEY-----
+
+    private-repo:
+      url: git@github.com:the-medium/kstadium-k8s.git
+      name: kstadium-k8s
+      type: git
+      sshPrivateKey: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        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
+        P6KiOv/zxpZ6QFAAAAB2xpb0BMaW8BAgM=
+        -----END OPENSSH PRIVATE KEY-----
+  clusterCredentials:
+      - name: dev-kstadium-service
+        server: https://B145163611BFA15683F20D98C54237C2.gr7.ap-northeast-2.eks.amazonaws.com
+        labels:
+          argocd.argoproj.io/secret-type: cluster
+        config:
+          awsAuthConfig:
+            clusterName: dev-kstadium-service
+            roleARN: arn:aws:iam::911781391110:role/EKS-SA-Role
+          tlsClientConfig:
+            insecure: false # TLS 인증x
+            #insecure: true # TLS 인증x
+            caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJTWVRd3ZPMFphaU13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1qY3dNVFUyTkRKYUZ3MHpNekE1TWpRd01UVTJOREphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURBU0NRZ2dHbnhSTnBlTnVIaVI3S0QxZ09WVXRpL3pwTVIrbUxybTArK1hBQ3hmMHZEQkJmSWMrUUwKVC81aXBpUHZyNXFDWjhjZTA1L1FQSFlOUlNaU2MxQlBQWlEvUTJySHlPOHJoVU5ISmhDZTMvc1MwWDJyUTA2QgpnM1hCSEp1YXdnMlFuTXpjNEdNdVRLSDRhZlJ1MUpOUW1LcTN3dDlDRG5taHIxVGdLdytvYWVGWTNhcDVUaENsCndiUEFvMHU5dUdBVC9TNmpwckZNVEZtSnhFRGdZQ2h3QjRDUmFIU1VzNnNyU2ZaUTZ2aklDT3R0dmp6SEEvZjEKOU44ZFNHSXc3TDJBdlc5MG5XUHNuSThqV0k5SzR3T3RLYVJFMGlITkpKS1FmZ2hnbFV0Wmg0Q1h3NnJBSXN0bwpwV3A1Y1AwSFBQQ2FnMnhhNHcwU1Uva3V2UWoxQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUZnBrV0Y3bUFlM0hxYmsxY3lXWHh3OEdlMG9EQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ3VoUEVOUTAxegpVUEd4OTFOcUNVREZrMHNDUDBtUjJid2hPRzVicEJXQU1UVk1tLyswUDY5VzRKRi9YVnAyYlZza1BPOS91QXdFCkx6a3cyVXhPTVo4TkpyS1NRZ3V3VXFlM1owQmowSXZXRjdYbEZHOHkzVVF0cnBxVGFhTVZRQjVqN2t2OFFyR3UKUlRySGdSeDBoaTZrZk5VdWgxQUtzSTh3NHo0SzNFNG10d1NnR1ZxbDkvb0xYd01ISnJmbEhLemxjQ0UzNE8yNwp2VWlKZmdoTjV2emFiMk9wc0IrRTBSdDYrUUs4OU5DaW0vY2lQb1Z3VlYraXVGci9LdmR5dkE1Mi9zVXJiQWEvCmFPeVZ2U1FFdzF3WSttS0xRaFN5dXhqQXJLeDR3TWJzaTRtV2dzeFpEbGZuV24rMTcvM3VaejhxNHJnRW1hSDQKdkpPa2VFY08vTWxRCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+
+
+      - name: dev-kstadium-gndchain
+        server: https://FFE2AB655DE16A66CB30F0925945A580.gr7.ap-northeast-2.eks.amazonaws.com
+        config:
+          awsAuthConfig:
+            clusterName: dev-kstadium-gndchain
+            roleARN: arn:aws:iam::911781391110:role/EKS-SA-Role
+          tlsClientConfig:
+            insecure: false # TLS 인증x
+            caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCRENDQWV5Z0F3SUJBZ0lITCtBWTRlS0I0REFOQmdrcWhraUc5dzBCQVFzRkFEQVZNUk13RVFZRFZRUUQKRXdwcmRXSmxjbTVsZEdWek1CNFhEVEl6TURreU56QXhOVGMxTVZvWERUTXpNRGt5TkRBeE5UYzFNVm93RlRFVApNQkVHQTFVRUF4TUthM1ZpWlhKdVpYUmxjekNDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DCmdnRUJBTSs5Z0t3WFJ1blhaSzlKR0hXUnVTWWFUeXJMaWVOblF6Z3pmNDlqZGcyWEhKTXhzMDdIM2dPR0dmSEEKT3lwdzVrd1JzMEllOW5URFVDb2xYb2hFckRSa2dmLzhHL2tKYkJOOW8rREZqUWFGRWRrYmRkRTMrS1YxU3JPbgo1T1JEVGpTbHE5c0hIVkNhWkE5ZVd4S2xOUCtzcnkyMlMrb3NYV0tpUHB2SUtZeUxrQ1cwZnhid1JpbDNycFlmClRKWWpjM2hJcC9NRi91STR5UmpZazZ4bWFxUG5MN0VvcFlQUDBiOHdRcnRaVW13eVMyTDE3ODhJRldnYmxOT1gKVmtXQVFiTFBMaVVNeTllZytiMGRGeTJKcTZaN3pINTMzaDIvR0ZvZ2VrR1pMdWZhZ3J3ZkQvQU40b1hOZm1reApWdDhYdHNuT1dKN1Q5LzhKMW5QTmw0V2pWNXNDQXdFQUFhTlpNRmN3RGdZRFZSMFBBUUgvQkFRREFnS2tNQThHCkExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkVQVGxpaHVFNElSUEluak0rUWdDVWFxRmcwQ01CVUcKQTFVZEVRUU9NQXlDQ210MVltVnlibVYwWlhNd0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFDbzZ0VzAvQ1BYVApZaGVrNE0vT04xS2lCLy9YS3U5SlFBTUZadkhETHQ5OS81eU4zWWl5N2xjNkRMakxZMnI0UE41QXlZbEFSNHhVCmxnSnorVUVIN3dSNTc2aHBNOWdJbVpLd3FQbzZCblhoQmVXSU1BSVIyRUtVWnFydERjamEyVFdaNVlOMUxTaG8KQVhycGlkKy9nVXBHdzZBUWhsV0RNRlVSL3IrdU5BYlBVSmw4dDF5V2VTRlZtUFJ4NFE0NUtuNm1GVVlIR1JadwozalUzU1RPMFdiWlhSMVpRaGFWMFFxOXRueFk4b3NFTXFFdXRITFFxRHl4SExzejZZazloTmJCTCswdjR0cHFTCjFHeC9TazR4bk9OQVppZVRzcll1MFgvbFR4ekpyV01GazFpMTZ3TUk5QWk5cjFET3d5VWl2RVVJSWkrRUtNZjkKdDF3Q2wvZThnZ3M9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+
+global:
+  logging:
+    format: text
+    level: debug
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/load-balancer-name: alb-dev-kstadium-managed-argo
+      alb.ingress.kubernetes.io/group.name: tg-dev-kstadium-managed-argo
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:911781391110:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/target-type: 'ip'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/ssl-redirect: '443'
+      alb.ingress.kubernetes.io/actions.ssl-redirect: {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
+      external-dns.alpha.kubernetes.io/hostname: managed-argo.dev.kstadium.io
+    paths:
+      - /
+    pathType: Prefix
+
+  serviceAccount:
+    create: true
+    name: argocd-server
+    annotations: 
+        eks.amazonaws.com/role-arn: arn:aws:iam::911781391110:role/EKS-SA-Role
+    automountServiceAccountToken: true
+controller:
+  serviceAccount:
+    create: true
+    name: argocd-application-controller
+    annotations: 
+        eks.amazonaws.com/role-arn: arn:aws:iam::911781391110:role/EKS-SA-Role
+    automountServiceAccountToken: true
+
+

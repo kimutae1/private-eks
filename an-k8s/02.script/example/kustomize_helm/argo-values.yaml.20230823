@@ -1,0 +1,35 @@
+configs:
+  secret:
+    argocdServerAdminPassword: "$2a$10$sfqdMyMy9VbA4XDy6VMPVu2SrI5cGkNfCUbIbIs6SZEpQWi/2uRtC%"
+    argocdServerAdminPasswordMtime: "2023-08-02T15:04:05Z"
+  clusterCredentials:
+      - name: dev-kstadium-lio
+        server: https://546F56F10C1EE119258A4DD0AEF49631.yl4.ap-northeast-2.eks.amazonaws.com
+        labels:
+          argocd.argoproj.io/secret-type: cluster
+        config:
+          awsAuthConfig:
+            clusterName: arn:aws:eks:ap-northeast-2:911781391110:cluster/dev-kstadium-lio
+            roleARN: arn:aws:iam::911781391110:role/eksFullAccessRole
+          tlsClientConfig:
+            insecure: false # TLS 인증x
+            caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWkU2TTg4WitMcE13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNE1Ea3dPREUyTXpKYUZ3MHpNekE0TURZd09ERTJNekphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURFdzlqa2NYUExtcVNVK0l0ek9WeFVwa3M5UlAybFkwMWh2WnBxckN4b3RCYTNKQ3h3ZE55VW10eEsKSWViUG1WcWk2Zk85MmkzY2xTamZ4MEYvV09EQXVqQ09WUDVuQkFCMnByQWgzR1ZjSmZaaEF6dmpISmRmMUQ2TQp3Q2t3YVpHeVdZaExhaXpkVlhxSGlFVWVmcHpGMGtsZnI3d2F3M0FLakdGb1hETzdvVFpqTDNUQjZQdXVrcEswCk13d1RkbVZCYWNSNlFkQTdYdElaOTQ3VXphOEZmY2pyZEczQnhkSVFnMFhiM21EbTBUalVOQmh1OGVSNXlaR08KejVtT1VuQ1FKRjl3dmxKc1pKQlhIQXRjZGJ4a20xSUU4WWVWVXN4Zy84SHN5V1dqZTRVY05vSDVWRW0xcm40SgphWUI5RTFVMXBMSE9JaGh2WjlybklDQlFCTFNQQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTVHAzRGh0cWU5cDVWb3FFWW40d2J5aW1DaTd6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRREJTZDhhVVU2MgpCLzQxWjVTNDhYbUJxTnluMmRJZzk2T0RUd3BMclF6VFl5Z0hYMkNvVVdXYm95OE9qNDh6K3pGakh6cHVPeGMzClVEb2UwekNLZVdXZHhXcE0xZXVoWldDcmp5bTd0VFpONFpWM05MTlNCV1ZLUmhFYTZrMkpJS25wcXZ2UHZKWHQKZHZjK2d1czhXangxZHBnQlE2a01VOHBJZnZIRUI5eVlVVHI4MUkzZzZpaVNIVmxlVlpIdy8wWmU0NkZjK0ZyQQoySmJsRmxudGlmTkREc1EyNkpWU28reWRSaElYdk0wK2F2TWtjTE93bFpxRS8xRnRnMHB2VjVCc1dIcWN3bGVnCkUzeS8yaTlZNllLWkk5WDVJQmRaOThITVE4c0pzQUpYSDIxRll3Z1VWNENNczQxbXFJVFVBeHFaQ08rcFVpK3MKN3lLYWdhM1FPZzRXCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:911781391110:certificate/c4b1fa44-ad4b-404e-aa4d-6e6e2aa3f858
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/target-type: 'ip'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
+      alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    hosts:
+      - lucas-argo.dev.kstadium.io
+    paths:
+      - /
+    pathType: Prefix

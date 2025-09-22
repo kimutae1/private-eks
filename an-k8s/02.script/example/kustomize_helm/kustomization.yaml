@@ -1,0 +1,11 @@
+kind: Kustomization
+
+helmCharts:
+  - name: argo-cd
+    repo: https://argoproj.github.io/argo-helm
+    version: 5.43.2
+    releaseName: my-argocd
+    namespace: managed
+    valuesFile: my-values.yaml 
+    includeCRDs: false
+

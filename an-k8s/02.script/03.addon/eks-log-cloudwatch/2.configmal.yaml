@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  cluster.name: dev-kstadium-service
+  http.port: "2020"
+  http.server: "On"
+  logs.region: ap-northeast-2
+  read.head: "Off"
+  read.tail: "On"
+kind: ConfigMap
+metadata:
+  name: fluent-bit-cluster-info
+  namespace: kube-system
+

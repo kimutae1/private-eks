@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-admin
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-admin
+  template:
+    metadata:
+      labels:
+        app: app-admin
+    spec:
+      containers:
+      - name: app-admin
+        image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin:latest
+        ports:
+        - containerPort: 3000

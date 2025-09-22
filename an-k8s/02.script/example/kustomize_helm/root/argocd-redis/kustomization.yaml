@@ -1,0 +1,16 @@
+helmCharts:
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 16.4.0
+    releaseName: my-argocd-redis
+    namespace: my-argocd
+    valuesFile: my-values.yaml
+    includeCRDs: false
+
+## ./kustomization.yaml
+bases:
+  - argocd
+  - argocd-redis
+  bases:
+  - argocd
+  - argocd-redis

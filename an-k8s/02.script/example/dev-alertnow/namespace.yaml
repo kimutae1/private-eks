@@ -1,0 +1,75 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2024-06-03T08:11:52Z"
+    labels:
+      kubernetes.io/metadata.name: argocd
+    name: argocd
+    resourceVersion: "2640796"
+    uid: ab1d2596-a248-462a-9c05-f793ec943002
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2024-05-24T06:10:18Z"
+    labels:
+      kubernetes.io/metadata.name: default
+    name: default
+    resourceVersion: "41"
+    uid: 1646d57d-073a-4f20-88ec-6df0190a3e8f
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2024-05-24T06:10:18Z"
+    labels:
+      kubernetes.io/metadata.name: kube-node-lease
+    name: kube-node-lease
+    resourceVersion: "37"
+    uid: c4e98943-2aa0-423a-9d18-c84851bfb142
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2024-05-24T06:10:18Z"
+    labels:
+      kubernetes.io/metadata.name: kube-public
+    name: kube-public
+    resourceVersion: "33"
+    uid: dfd871a2-f96d-475d-87bb-1d41658437e4
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2024-05-24T06:10:18Z"
+    labels:
+      kubernetes.io/metadata.name: kube-system
+    name: kube-system
+    resourceVersion: "17"
+    uid: b60dcae5-0728-4241-9860-dd8d05e2a273
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+kind: List
+metadata:
+  resourceVersion: ""

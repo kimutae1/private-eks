@@ -1,0 +1,19 @@
+{{ include "deployment.template" . }}
+---
+{{ if empty .Values.CommonSecretSelect }}
+{{ if empty .Values.OptionalSecretManagerSelect }}
+  {{/*- CommonSecretSelect가 nil, Optional...Select도 nil이 리턴될 경우 건너뛰기 -*/}}
+{{ else }}
+{{- include "externalsecret.template" . }}
+{{ end }}
+{{ else }}
+{{- include "externalsecret.template" . }}
+{{ end }}
+---
+{{ if eq .Values.NotUseLb true }}
+  {{/*- LB를 사용하지 않는 경우 ingress와 service는 생성안함 -*/}}
+{{ else }}
+{{- include "ingress.template" . }}
+---
+{{- include "service.template" . }}
+{{ end }}

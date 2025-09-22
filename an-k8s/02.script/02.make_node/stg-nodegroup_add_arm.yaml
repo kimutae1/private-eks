@@ -1,0 +1,49 @@
+kind: ClusterConfig
+apiVersion: eksctl.io/v1alpha5
+metadata:
+    name: stg-alertnow
+    region: ap-northeast-2
+    annotations:
+      cert-manager.io/cluster-issuer: "my-issuer"
+
+vpc:
+  id: vpc-03f938d63b3dc31d2
+  cidr: 10.0.0.0/16
+  securityGroup: sg-0da577e13607dfa16
+  subnets:
+    private:
+      ap-northeast-2a:
+         id: subnet-0947044bb30ff3138
+      ap-northeast-2b:
+         id: subnet-01e8f39bc63ff2723
+
+
+managedNodeGroups:
+  - name: arm # 클러스터의 노드 그룹명
+    instanceType: m6g.large # 클러스터 워커 노드의 인스턴스 타입
+    desiredCapacity: 2 # 클러스터 워커 노드의 갯수
+    volumeSize: 30  # 클러스터 워커 노드의 EBS 용량 (단위: GiB)
+    privateNetworking: true
+    subnets:
+      -  subnet-0947044bb30ff3138
+      -  subnet-01e8f39bc63ff2723
+    ssh:
+      enableSsm: true
+    labels:
+      arch: arm64
+    taints:
+      - key: arch
+        value: arm64
+        effect: NoSchedule
+    iam:
+      #  withAddonPolicies:
+      #    imageBuilder: true # Amazon ECR에 대한 권한 추가
+      #    albIngress: true  # albIngress에 대한 권한 추가
+      #    cloudWatch: true # cloudWatch에 대한 권한 추가
+      #    autoScaler: true # auto scaling에 대한 권한 추가
+      #    ebs: true # EBS CSI Driver에 대한 권한 추가
+      instanceRoleARN: arn:aws:iam::381492026218:role/eks-node-role
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]

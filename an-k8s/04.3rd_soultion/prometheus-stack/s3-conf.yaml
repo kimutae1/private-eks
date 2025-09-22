@@ -1,0 +1,8 @@
+type: s3
+config:
+  bucket: "s3-dev-thanos"
+  endpoint: "s3.ap-northeast-2.amazonaws.com"
+  region: "ap-northeast-2"
+  aws_sdk_auth: true
+  trace:
+    enabled: true

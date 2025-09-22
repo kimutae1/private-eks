@@ -1,0 +1,133 @@
+helm repo add argo https://argoproj.github.io/argo-helm
+
+cat << 'EOF' > argo-values.yaml
+configs:
+  secret:
+    argocdServerAdminPassword: "$2a$10$sfqdMyMy9VbA4XDy6VMPVu2SrI5cGkNfCUbIbIs6SZEpQWi/2uRtC%"
+    argocdServerAdminPasswordMtime: "2023-08-02T15:04:05Z"
+    
+  repositories:
+    private-repo:
+      url: git@github.com:the-medium/kstadium-manifest.git
+      name: kstadium-manifest
+      type: git
+      sshPrivateKey: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        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
+        POMhVJVZEf2EcXAAAAB2xpb0BMaW8BAgM=
+        -----END OPENSSH PRIVATE KEY-----
+EOF
+
+
+
+cat << EOF >> argo-values.yaml
+  clusterCredentials:
+      - name: dev-kstadium-service
+        server: https://BF3D156AFFFAE8BD64FDFDEAE73CEC94.gr7.ap-northeast-2.eks.amazonaws.com
+        labels:
+          argocd.argoproj.io/secret-type: cluster
+        config:
+          awsAuthConfig:
+            clusterName: dev-kstadium-service
+            roleARN: $eks_sa_role
+          tlsClientConfig:
+            insecure: false # TLS 인증x
+            #insecure: true # TLS 인증x
+            caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJQmtsbGZ2UjhCemt3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1UVXdOek00TVRkYUZ3MHpNekE1TVRJd056TTRNVGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURLbXl3Q0EzRzZEbjJFV2tqZCtiNytjbG1GbFZ3VDB4a3dKemNoaFlweExVSkthM3M5ZVF4bHEvTTUKR25Sc09GZElQS0dHNGlUeStRUjNhcGZMcVI2MEpJY2tFUnB2eW4vM3UyM3dQRmNUUnBmY0dleEo2TVNVZTZEeQpQakgrdTV0WTZOS2pvNkJiUExkNUE0UGt1Z0NaRnlJdkp4cUYzME9iM2s3NGl6a2NQSHNzYjVOWFhxU0FlRU1SCk1yaGZXM21Zc3czVkN2aGc0ako3bE53b1BuWE1uM2N4YzR6Ump0dExMdklUdnBOR2FzZ3pvdzZIK2FWUHhhYk4KTm5zSk5mcFBTRjhtVHRoYWd0WVY1NWVLVzMxWDB0RmowTzNPRDU0dkRUeXBTRytPMU5XNm0rb0VpZzJXZyt6ZQpjVEl4VmZlc1diMWpkeGxXSWVGZ2xqTXlsVE9wQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRMlZFSlF5b084alN6Mlc3MFlrZEZwZmZZUElEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWM3NXJ4QkdONgpkRGRLMVVOMFBpbWkzSCt1N2tpN0FCMGxEYkFFYWR0V1ZheW9UNVJOUjZ6VHAyM0p6L2o2ODRYSFBuR3JaODZaClUvUThveVhScm4yVHdiTExqS3BVSTg1VjdJd0lWYzRlMXFvL25sNXRycTY2aXlZTXZaR05sL1Ftc29Bb1FVVHUKT0ZoeHB0eTMxY1FSb1pZOU5SZUw1YmlpaEJQRitQYU5BVUxOdTRUaElKZDFrcWswc1B2emQrL3JvUElNNkdVMApXQnAvOEhCbmNDeUlDYzcyQ3lWeVR4Vmk2NDZZNlUrUjgwZkRjUkcyMEpmR3laNnUzMmNzWkhvZEo3K2xIeWdzCkZYb3dXTnd5UnQ2VzhaUCtCbUtQa0VWODRBUjZIYVN1YmhBcjlCZWRWZHJ4Q2xnRnI1NWhHNjdUVFRqSTAyUnQKQ3dJNG5yWTB2MzNmCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+
+
+      - name: dev-kstadium-gndchain
+        server: https://5F150764B67F13F1DC3714068BF391A9.gr7.ap-northeast-2.eks.amazonaws.com
+        config:
+          awsAuthConfig:
+            clusterName: dev-kstadium-gndchain
+            roleARN: $eks_sa_role
+          tlsClientConfig:
+            insecure: false # TLS 인증x
+            caData: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSlU1OXlieWl0TVV3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpBNU1UVXdOalU1TlRGYUZ3MHpNekE1TVRJd05qVTVOVEZhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURoMUpJMTRaeDdJN04rZVhKSllnd3o1cFBVbkdqbmZpWGlqUU4zUTRQS0hRN1h0bzFRVDF5b2VwTUkKWC96M0c4amlRZk9BUGlXZEdzQ2Q5a05SV1Q1cnI2RVBWUFF4MTJBZzlZNUxhWW9Rb09iRC9BVFNKUlBsS3dlRQpESmdXdXRPLzBIbVFJUlpUNlNtUnJCeVhnaE5ZSlhQSHFTajRlQWtCN1FDQk8yZUVnU0xYQ0pETmZRMlpGSVZIClNrcDBzbmppcmhnc0JUYlVGN0ZLQVpwWUI1dnN5Zkp3eVN3ZllGS1htUGZIaFJpV1NzSWt0eWVWNUpKc0FBUTcKU1VXRjRtNmFweWp6TTh3c0RzYWw3M3F5b0dRK3JDc0F4YWZTSExNS292SjJ1VSt2bEhtWUJ3Y0tIdkhmNGtlWgphUWs2YTVOd1MrYU85TTkvbm5PRHIwN2Jhd3lYQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSdkh0YjZPZzFrVndQam1jTGgxSklCUGZ4aDV6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQzUySE5rV2NvUwpSTldmU2MxNVQ2TUUzTzI2NjlVbUJlQU1NRGVaSGo5cnhXYU94bjJFSWozbDlvOFpCUVhTUThtdVRodTFpY0xLCkhrbytRT0E0US9aOXBJRTNXOTNFRXpiWVc3a2VMVDRrN3BsdE1DZHZjb2I5dVJOc2lrOGhWVmdsQ0loZXpEVzYKbmpWWmRmeGhXZ3JYdHNQa1UyMWRrM0lTdlJVNHU3UlFvWWFhbFJra28vY1dLZitaZzRRYmtCS3dIREc5aTd6UAp4TldSekJmeldyZ0ZtcGRTbE5zZ1RjZGo1OCtITTBIZnVOczFaOTVKQ0NEaDYrN0p6V3B3S21LWjJaN29nRjNYCll3bnFDT1JVNlVOcTF0MjNNNXFpRjlJdUtpVU5MNTErUTNrRkRDeTJsaC80b1M4MUlTRjFKM1pybFVHd1FjaDIKdFlva0lGeDIzK294Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+
+EOF
+
+cat << EOF >> argo-values.yaml
+global:
+  logging:
+    format: text
+    level: debug
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/load-balancer-name: alb-${cluster_name}-argo
+      alb.ingress.kubernetes.io/group.name: tg-${cluster_name}-argo
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/certificate-arn: $cert_arn
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/target-type: 'ip'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/ssl-redirect: '443'
+      alb.ingress.kubernetes.io/actions.ssl-redirect: {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
+      external-dns.alpha.kubernetes.io/hostname: $full_domain
+    paths:
+      - /
+    pathType: Prefix
+
+  serviceAccount:
+    create: true
+    name: argocd-server
+    annotations: 
+        eks.amazonaws.com/role-arn: $eks_sa_role
+    automountServiceAccountToken: true
+controller:
+  serviceAccount:
+    create: true
+    name: argocd-application-controller
+    annotations: 
+        eks.amazonaws.com/role-arn: $eks_sa_role
+    automountServiceAccountToken: true
+
+
+EOF
+
+
+kubectl create namespace managed
+#kubectl apply -f lucas-argo-sa.yaml
+#helm install -n managed argocd argo/argo-cd -f argo-values.yaml
+helm upgrade --install -f argo-values.yaml --namespace managed argocd argo/argo-cd

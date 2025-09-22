@@ -1,0 +1,17 @@
+Env: stg 
+OldTag: ks-push-service-202401191114
+NewTag: ks-push-service-202401191139
+AppType: BackEnd
+Domain: Kstadium
+ARecord: push-api
+CommonSecretSelect: 
+  - Push-Service
+LbConfig: 
+  HealthCheck: /kstadium/api/v1/notification/fcm/healthcheck
+  ListenPorts:
+    - protocol: HTTP
+      port: 80
+    - protocol: HTTPS
+      port: 443
+    - protocol: HTTP
+      port: 4000

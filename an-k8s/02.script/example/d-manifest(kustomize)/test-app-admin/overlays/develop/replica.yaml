@@ -1,0 +1,7 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+#  name: dev-default-001
+  name: dev-dev-default-001
+spec:
+  replicas: 2

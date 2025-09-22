@@ -1,0 +1,10 @@
+Env: dev
+OldTag: ks-explorer-service-202401161036 
+NewTag: ks-explorer-service-202401181640
+AppType: BackEnd
+Domain: Kstadium
+ARecord: explorer-api
+CommonSecretSelect: 
+  - Explorer-Service
+LbConfig: 
+  HealthCheck: /v1/transaction/history

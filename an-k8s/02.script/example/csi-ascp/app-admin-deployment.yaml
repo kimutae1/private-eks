@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-deployment
+  template:
+    metadata:
+      labels:
+        app: app-deployment
+    spec:
+      serviceAccountName: eks-sa-role
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "aws-common-secret"
+      containers:
+      - name: app-deployment
+        image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/test-app-admin:latest
+        # envFrom:
+        #   - configMapRef: 
+        #       name: env-configmap
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: dev-common-secret
+                key: bridge.DB.USER
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: dev-common-secret
+                key: bridge.DB.PASSWORD
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true

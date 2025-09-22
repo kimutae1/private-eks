@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: base-namespace
+commonLabels:
+  app: base
+commonAnnotations:
+  company: kstadium
+
+
+resources:
+- deployment.yaml
+#- ./deployment.yaml
+- ./service.yaml
+#- ./develop/kustomization.yaml
+

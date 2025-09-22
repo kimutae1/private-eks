@@ -1,0 +1,1269 @@
+applications: 
+- name: lio-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: lio-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-dorian-app-admin
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://60444EA20E53E07C53875F6DC1A82CCC.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-service
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    name: 
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-gndchain
+    #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-service
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    name: 
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-gndchain
+    #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-service
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-gndchain
+    #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-service
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-gndchain
+    #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: default
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-service
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    name: dev-kstadium-gndchain
+    #server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    #server: https://32633C8E33BB641BE124B58DDA292C6A.gr7.ap-northeast-2.eks.amazonaws.com
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    #name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    #name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    #name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    #name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    #server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+applications: 
+- name: dev-lucas-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: d-manifest/dorian-admin/overlays/develop
+  destination:
+    #server: https://F294B0B9B7223FA43697EC693DA7E794.gr7.ap-northeast-2.eks.amazonaws.com
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+
+
+- name: dev-lucas-gndchain
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: manifest/test-app-admin/overlays/develop
+  destination:
+    server: https://79FBC12066FB5384CBC2C8C6BB7B2AB3.gr7.ap-northeast-2.eks.amazonaws.com
+    namespace: managed
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+  info:
+  - name: url
+    value: https://github.com/the-medium/test-app-admin
+

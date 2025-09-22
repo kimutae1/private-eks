@@ -1,0 +1,6 @@
+Env: stg 
+OldTag: as-price-monitoring-202312151523
+NewTag: as-price-monitoring-202312151543
+AppType: BackEnd
+NotUseLb: true
+

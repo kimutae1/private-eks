@@ -1,0 +1,27 @@
+applications: 
+- name: dev-argocd
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:the-medium/kstadium-k8s.git
+    targetRevision: develop 
+    path: d2-manifest/applications/argocd
+    helm:
+      valueFiles:
+        - common-values.yaml
+        - values.yaml
+  destination:
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+

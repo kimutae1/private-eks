@@ -1,0 +1,5 @@
+Env: dev
+OldTag: octet-token-change-eks-202401251433
+NewTag: octet-token-change-eks-202401251436
+AppType: BackEnd
+NotUseLb: true

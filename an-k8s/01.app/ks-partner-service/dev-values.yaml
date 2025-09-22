@@ -1,0 +1,11 @@
+Env: dev
+OldTag: ks-partner-service-202401251432
+NewTag: ks-partner-service-202401291036 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: partner-api
+CommonSecretSelect: 
+  - Main
+  - Partner-Service
+LbConfig:
+  HealthCheck: /swagger-ui/index.html

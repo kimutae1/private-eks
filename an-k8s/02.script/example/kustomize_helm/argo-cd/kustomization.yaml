@@ -1,0 +1,11 @@
+helmCharts:
+  - name: argo-cd
+    repo: https://argoproj.github.io/argo-helm
+    #version: 5.19.12
+    releaseName: my-argocd
+    namespace: managed
+    valuesFile: my-values.yaml 
+    includeCRDs: false
+
+resources:
+  - my-secret.yaml

@@ -1,0 +1,34 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+	    {
+		"Effect": "Allow",
+		"Principal": {
+		    "Federated": "arn:aws:iam::911781391110:oidc-provider/oidc.eks.ap-northeast-2.amazonaws.com/id/32633C8E33BB641BE124B58DDA292C6A"
+		},
+		"Action": "sts:AssumeRoleWithWebIdentity",
+		"Condition": {
+		    "StringEquals": {
+			"oidc.eks.ap-northeast-2.amazonaws.com/id/32633C8E33BB641BE124B58DDA292C6A:sub": [
+			    "system:serviceaccount:kube-system:dev-kstadium-service-eks-svc-role-sa",
+			    "system:serviceaccount:managed:argocd-application-controller",
+			    "system:serviceaccount:managed:argocd-server"
+			],
+			"oidc.eks.ap-northeast-2.amazonaws.com/id/32633C8E33BB641BE124B58DDA292C6A:aud": "sts.amazonaws.com"
+		    }
+		}
+	    },
+	    {
+		"Sid": "Statement1",
+		"Effect": "Allow",
+		"Principal": {
+		    "AWS": [
+			"arn:aws:iam::911781391110:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_crypted_devops_1c74128b3bb9822e",
+			"arn:aws:iam::911781391110:root",
+			"arn:aws:sts::911781391110:assumed-role/devops-role/devops-session"
+		    ]
+		},
+		"Action": "sts:AssumeRole"
+	    }
+	]
+    }

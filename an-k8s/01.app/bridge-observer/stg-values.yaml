@@ -1,0 +1,11 @@
+Env: stg 
+OldTag: oldtag2
+NewTag: bridge-observer-202401191701 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: bridge-observer
+CommonSecretSelect: 
+  - Bridge-Observer
+LbConfig:
+  ElbPubOrPri: internal 
+  HealthCheck: /api/health

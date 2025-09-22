@@ -1,0 +1,19 @@
+Env: dev
+OldTag: ks-octet-service-202401291635 
+NewTag: ks-octet-service-202401300950
+AppType: BackEnd
+Domain: Kstadium
+ARecord: octet-api
+CommonSecretSelect: 
+  - Octet-Service
+OptionalSecretManagerSelect:
+  - Octet
+LbConfig:
+  HealthCheck: /swagger-ui/index.html
+  ListenPorts:
+    - protocol: HTTP
+      port: 80
+    - protocol: HTTPS
+      port: 443
+    - protocol: HTTP
+      port: 4000

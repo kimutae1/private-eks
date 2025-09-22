@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default
+  #name: app-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: default
+  template:
+    metadata:
+      labels:
+        app: default
+    spec:
+      containers:
+      - name: default
+        #image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/${MY_SERVICE_NAME}:latest
+        image: 911781391110.dkr.ecr.ap-northeast-2.amazonaws.com/develop/default:latest
+        ports:
+        - containerPort: 3000

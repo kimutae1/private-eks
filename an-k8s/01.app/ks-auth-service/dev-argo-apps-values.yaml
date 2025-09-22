@@ -1,0 +1,27 @@
+applications: 
+- name: ks-auth-service
+  namespace: managed
+  additionalLabels: {}
+  additionalAnnotations: {}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  project: default
+  source:
+    repoURL: git@github.com:kstadium/kstadium-k8s.git
+    targetRevision: develop
+    path: 01.app/common
+    helm:
+      valueFiles:
+        - common-values.yaml
+        - ../ks-auth-service/dev-values.yaml
+  destination:
+    name: dev-kstadium-service
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+  revisionHistoryLimit: null
+

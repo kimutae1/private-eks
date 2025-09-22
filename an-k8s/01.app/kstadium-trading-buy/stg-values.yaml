@@ -1,0 +1,6 @@
+Env: stg 
+OldTag: kstadium-trading-buy-202401231604 
+NewTag: kstadium-trading-buy-202401231624 
+AppType: BackEnd
+Domain: Kstadium
+ARecord: buy

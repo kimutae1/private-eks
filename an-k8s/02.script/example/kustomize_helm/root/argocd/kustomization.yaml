@@ -1,0 +1,8 @@
+helmCharts:
+  - name: argo-cd
+    repo: https://argoproj.github.io/argo-helm
+    version: 3.26.5
+    releaseName: my-argocd
+    namespace: my-argocd
+    valuesFile: my-values.yaml
+    includeCRDs: true

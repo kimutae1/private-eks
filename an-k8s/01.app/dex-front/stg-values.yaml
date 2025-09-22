@@ -1,0 +1,5 @@
+Env: stg 
+OldTag: dex-front-202401191644 
+NewTag: dex-front-202401261401 
+AppType: FrontEnd
+Domain: Dex

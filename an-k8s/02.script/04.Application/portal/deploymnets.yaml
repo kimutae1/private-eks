@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-sso-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portal-sso-web
+  template:
+    metadata:
+      labels:
+        app: portal-sso-web
+    spec:
+     tolerations:
+     - key: "arch"
+       operator: "Equal"
+       value: "arm64"
+       effect: "NoSchedule"
+     affinity:
+       nodeAffinity:
+         requiredDuringSchedulingIgnoredDuringExecution:
+           nodeSelectorTerms:
+           - matchExpressions:
+             - key: arch
+               operator: In
+               values:
+               - arm64
+     containers:
+     - name: portal-sso-web
+       image: 381492026218.dkr.ecr.ap-northeast-2.amazonaws.com/stg-portal-sso-web
+       ports:
+       - containerPort: 80
+       - containerPort: 443
+       env:
+       - name: JAVA_OPTS
+         value: "-Xms1024M -Xmx1740M"
+       - name: PROFILE
+         value: "psstg"
+       resources:
+         requests:
+           cpu: "1024m"
+           memory: "3072Mi"
+         limits:
+           cpu: "1024m"
+           memory: "3072Mi"

@@ -1,0 +1,20 @@
+# Prometheus & Grafana Storage Class
+cat << EOF > prometheus-${cluster_name}.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-obs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+EOF
+
+kubectl apply -f prometheus-${cluster_name}.yaml
+
+# Prometheus Helm Install
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+kubectl create namespace prometheus
+helm upgrade -install prometheus prometheus-community/prometheus \
+    --namespace prometheus \
+    --set alertmanager.persistentVolume.storageClass="ebs-obs-sc",server.persistentVolume.storageClass="ebs-obs-sc"
+

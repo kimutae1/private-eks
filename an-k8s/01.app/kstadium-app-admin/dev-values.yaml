@@ -1,0 +1,6 @@
+Env: dev
+OldTag: kstadium-app-admin-202401181638 
+NewTag: kstadium-app-admin-202401251707
+AppType: FrontEnd
+Domain: Kstadium
+ARecord: admin

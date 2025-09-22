@@ -1,0 +1,34 @@
+{{- define "service.setPort" -}}
+  {{- if empty .Values.ListenPort -}}
+    - protocol: TCP
+      port: 443
+      targetPort: {{ include "deployment.setPort" . }}
+  {{- else -}}
+    {{- if and (ne (int .Values.ListenPort) 80) (ne (int .Values.ListenPort) 443) -}}
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: {{ include "deployment.setPort" . }}
+    - name: listen
+      protocol: TCP
+      port: {{ .Values.ListenPort }}
+      targetPort: {{ include "deployment.setPort" . }}
+    {{- else -}}
+      {{- fail "Error! in service.setPort, Please set to another numbers or delete ListenPort in values.yaml" -}}
+    {{- end -}} 
+  {{- end -}}    
+{{- end -}}
+
+{{- define "service.template" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.Env }}-{{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: {{ .Values.Env }}-{{ .Release.Name }}
+  ports:
+    {{ include "service.setPort" . }}
+  type: ClusterIP
+  {{- end -}}

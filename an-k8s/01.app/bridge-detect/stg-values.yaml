@@ -1,0 +1,7 @@
+Env: stg 
+OldTag: oldtag
+NewTag: bridge-detect-202401191633
+AppType: BackEnd
+CommonSecretSelect: 
+  - Bridge-Detect
+NotUseLb: true

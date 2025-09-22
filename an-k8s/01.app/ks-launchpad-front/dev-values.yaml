@@ -1,0 +1,6 @@
+Env: dev
+OldTag: ks-launchpad-front-202401181652
+NewTag: ks-launchpad-front-202401181754 
+AppType: FrontEnd
+Domain: Kstadium
+ARecord: launchpad

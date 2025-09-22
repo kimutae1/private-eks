@@ -1,0 +1,48 @@
+configs:
+  secret:
+    argocdServerAdminPassword: "$2a$10$AiUkFXDaCy8efAHMRV2Nie1LovFeHJbwBzbgUqellxz5U0qRiU7zu%" 
+    argocdServerAdminPasswordMtime: "2023-08-02T15:04:05Z"
+    
+global:
+  logging:
+    format: text
+    level: debug
+  #domain: argo.makgoon.com
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/load-balancer-name: alb-stg-alertnow-argo
+      alb.ingress.kubernetes.io/group.name: tg-stg-alertnow-argo
+      #alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:381492026218:certificate/f67870a1-7aae-4717-849a-090af81b6455
+      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/target-type: 'ip'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/ssl-redirect: '443'
+      alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=60
+      alb.ingress.kubernetes.io/actions.ssl-redirect: {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
+      external-dns.alpha.kubernetes.io/hostname: argo.
+    hostname: "argo.makgoon.com"
+    paths: /
+    pathType: Prefix
+
+  serviceAccount:
+    create: true
+    name: argocd-server
+    annotations: 
+        eks.amazonaws.com/role-arn: arn:aws:iam::381492026218:role/EKS-SA-Role
+    automountServiceAccountToken: true
+controller:
+  serviceAccount:
+    create: true
+    name: argocd-application-controller
+    annotations: 
+        eks.amazonaws.com/role-arn: arn:aws:iam::381492026218:role/EKS-SA-Role
+    automountServiceAccountToken: true
+
+

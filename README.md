@@ -20,6 +20,3 @@
 
 [install](./install.md)
 
-## Tools
-
-[bitbucekt 관리](scripts/bitbucket.md)

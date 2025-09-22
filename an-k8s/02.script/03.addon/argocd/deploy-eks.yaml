@@ -1,0 +1,122 @@
+name: Push Image and Edit Manifest
+
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  push-image:
+    runs-on: "ubuntu-20.04"     
+    defaults:
+      run:
+        working-directory: ./
+        
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Declare Commit Hash variables
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch_name;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "##[set-output name=repository_name;]$(echo ${GITHUB_REPOSITORY#*/})"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Get AWS infos
+        id: aws-infos
+        run: |
+          if [ "${{ steps.vars.outputs.branch_name }}" = "develop" ]; then
+            ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_DEVELOP_ACCESS_KEY_ID }}
+            SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_DEVELOP_SECRET_ACCESS_KEY }}
+            ACCOUNT_ID=911781391110
+            AWS_REGION=ap-northeast-2
+          elif [ "${{ steps.vars.outputs.branch_name }}" = "release" ]; then
+            ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_STAGE_ACCESS_KEY_ID }}
+            SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_STAGE_SECRET_ACCESS_KEY }}
+            ACCOUNT_ID=779626203419
+            AWS_REGION=ap-northeast-2
+          elif [ "${{ steps.vars.outputs.branch_name }}" = "main" ]; then
+            ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_PRODUCTION_ACCESS_KEY_ID }}
+            SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_PRODUCTION_SECRET_ACCESS_KEY }}
+            ACCOUNT_ID=033240183289
+            AWS_REGION=ap-southeast-1
+          elif [ "${{ steps.vars.outputs.branch_name }}" = "rnd" ]; then
+            ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_RND_ACCESS_KEY_ID }}
+            SECRET_ACCESS_KEY_ID=${{ secrets.AWS_GITHUB_KSTADIUM_RND_SECRET_ACCESS_KEY }}
+            ACCOUNT_ID=003072849841
+            AWS_REGION=ap-northeast-2
+          fi
+          echo "::set-output name=access_key::$(echo ${ACCESS_KEY_ID})"
+          echo "::set-output name=secret_access_key::$(echo ${SECRET_ACCESS_KEY_ID})"
+          echo "::set-output name=account_id::$(echo ${ACCOUNT_ID})"
+          echo "::set-output name=region_name::$(echo ${AWS_REGION})"
+          echo "::set-output name=region_name::$(echo ${AWS_REGION})"
+     
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ steps.aws-infos.outputs.access_key }}
+          aws-secret-access-key: ${{ steps.aws-infos.outputs.secret_access_key }}
+          aws-region: ${{ steps.aws-infos.outputs.region_name }}
+          mask-aws-account-id: no
+
+      - name: Build image
+        run: docker build -t ${{ steps.vars.outputs.repository_name }} -f Dockerfile.${{ steps.vars.outputs.branch_name }} --no-cache .
+
+      - name: docker login
+        run: |
+          aws ecr get-login-password --region ${{ steps.aws-infos.outputs.region_name }} | docker login --username AWS --password-stdin ${{ steps.aws-infos.outputs.account_id }}.dkr.ecr.${{ steps.aws-infos.outputs.region_name }}.amazonaws.com
+
+      - name: tag image
+        run: |
+          docker tag ${{ steps.vars.outputs.repository_name }}:latest ${{ steps.aws-infos.outputs.account_id }}.dkr.ecr.${{ steps.aws-infos.outputs.region_name }}.amazonaws.com/${{ steps.vars.outputs.branch_name }}/${{ steps.vars.outputs.repository_name }}:latest
+          docker tag ${{ steps.vars.outputs.repository_name }}:latest ${{ steps.aws-infos.outputs.account_id }}.dkr.ecr.${{ steps.aws-infos.outputs.region_name }}.amazonaws.com/${{ steps.vars.outputs.branch_name }}/${{ steps.vars.outputs.repository_name }}:${{ steps.vars.outputs.sha_short }}
+          
+      - name: push image
+        run: |
+          docker push ${{ steps.aws-infos.outputs.account_id }}.dkr.ecr.${{ steps.aws-infos.outputs.region_name }}.amazonaws.com/${{ steps.vars.outputs.branch_name }}/${{ steps.vars.outputs.repository_name }} --all-tags
+          echo ${{ steps.aws-infos.outputs.account_id }}
+
+    outputs:
+      repository_name: ${{ steps.vars.outputs.repository_name }}
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+      account_id: ${{ steps.aws-infos.outputs.account_id }}
+      region_name: ${{ steps.aws-infos.outputs.region_name }}
+      branch_name: ${{ steps.vars.outputs.branch_name }}
+
+  Edit-Manifest:
+    needs: push-image
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        
+      - name: Checkout kustomize repository
+        uses: actions/checkout@v2
+        with:
+          repository: the-medium/kstadium-k8s
+          ref: develop
+          token: ${{ secrets.MANIFEST_TOKEN }}
+          path: kstadium-k8s
+
+      - name: Update Kubernetes resources
+        run: |
+          cd kstadium-k8s/manifest/${{ needs.push-image.outputs.repository_name }}/overlays/${{ needs.push-image.outputs.branch_name }}
+          kustomize edit set image Set_Kustomize=${{ needs.push-image.outputs.account_id }}.dkr.ecr.${{ needs.push-image.outputs.region_name }}.amazonaws.com/${{ needs.push-image.outputs.branch_name }}/${{ needs.push-image.outputs.repository_name }}:${{ needs.push-image.outputs.sha_short }}
+          
+
+      - name: Commit files
+        run: |
+          cd kstadium-k8s
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "Update image tag"
+          git push -u origin develop
+          

@@ -1,0 +1,17 @@
+Env: stg 
+OldTag: ks-bridge-backend-202401191412 
+NewTag: ks-bridge-backend-202401191433
+AppType: BackEnd
+Domain: Kstadium
+ARecord: bridge-api
+CommonSecretSelect: 
+  - Bridge 
+LbConfig: 
+  HealthCheck: /api/health
+  ListenPorts:
+    - protocol: HTTP
+      port: 80
+    - protocol: HTTPS
+      port: 443
+    - protocol: HTTP
+      port: 4000
